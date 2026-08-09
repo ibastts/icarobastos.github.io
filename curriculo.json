@@ -1,0 +1,99 @@
+{
+  "profile": {
+    "name": "Ícaro Bastos",
+    "role": "Profissional Administrativo",
+    "location": "Ilhéus, Bahia, Brasil",
+    "status": "Disponível para novas oportunidades",
+    "summary": "Profissional administrativo com sólida vivência em rotinas de departamento pessoal, fiscal e financeiro. Atuação com lançamento de títulos, conciliação bancária, gestão de contratos e obrigações fiscais em sistemas como Protheus, Workfinity e Lexio. Em transição para a área de dados, desenvolvendo Python, SQL e automação de processos.",
+    "email": "icarocaue79@gmail.com",
+    "links": {
+      "linkedin": "https://www.linkedin.com/in/ícaro-bastos"
+    }
+  },
+  "education": [
+    {
+      "institution": "Anhanguera",
+      "degree": "Bacharelado em Administração",
+      "period": "Em andamento — 4º semestre"
+    }
+  ],
+  "skills": {
+    "mastered": [
+      { "name": "Excel Avançado / Tabelas Dinâmicas", "level": 90 },
+      { "name": "Power BI", "level": 75 },
+      { "name": "Protheus", "level": 80 },
+      { "name": "Workfinity", "level": 80 },
+      { "name": "Lexio", "level": 80 },
+      { "name": "Pacote Office", "level": 90 },
+      { "name": "Rotinas Fiscais (e-CAC / FD115 / CCE)", "level": 75 },
+      { "name": "Conciliação Bancária", "level": 80 }
+    ],
+    "learning": [
+      { "name": "Python", "source": "Hashtag Treinamentos", "level": 35 },
+      { "name": "SQL", "source": "Hashtag Treinamentos", "level": 30 },
+      { "name": "Power Automate", "source": "Microsoft", "level": 30 }
+    ]
+  },
+  "experience": [
+    {
+      "role": "Assistente Administrativo",
+      "company": "Gertec",
+      "type": "Estágio",
+      "period": "jun/2026 — atual",
+      "location": "Presencial",
+      "highlights": [
+        "Lançamento de títulos financeiros no sistema, assegurando o correto processamento das informações",
+        "Elaboração de tabelas dinâmicas para mensuração de retrabalhos operacionais",
+        "Ajuste de centro de custo, assegurando a correta alocação das informações contábeis",
+        "Lançamentos de impostos federais via e-CAC e FD115, mantendo a conformidade fiscal",
+        "Elaboração de CCE (Carta de Correção Eletrônica) para correção de informações fiscais"
+      ]
+    },
+    {
+      "role": "Assistente Administrativo",
+      "company": "GéRun",
+      "type": "Estágio",
+      "period": "fev/2025 — jun/2026",
+      "location": "Ilhéus, Bahia",
+      "highlights": [
+        "Manutenção e atualização de planilhas no Excel",
+        "Geração de relatórios de ordem de serviço no sistema Workfinity",
+        "Criação e monitoramento de contratos no sistema Lexio, do envio até a assinatura",
+        "Cadastro de clientes, vendedores e parceiros no sistema Protheus"
+      ]
+    },
+    {
+      "role": "Assistente Administrativo",
+      "company": "Prefeitura Municipal de Ilhéus",
+      "type": "Estágio",
+      "period": "mar/2023 — ago/2023",
+      "location": "Ilhéus, Bahia",
+      "highlights": [
+        "Confecção de planilhas para controle e organização de informações administrativas",
+        "Organização e arquivamento de documentos, seguindo padrões de arquivologia",
+        "Acompanhamento e controle de despesas do setor",
+        "Organização e manutenção de contratos públicos"
+      ]
+    },
+    {
+      "role": "Assistente Administrativo",
+      "company": "Kemigas",
+      "type": "Meio período / Aprendiz",
+      "period": "mar/2022 — jun/2023",
+      "location": "Ilhéus, Bahia",
+      "highlights": [
+        "Conciliação bancária, garantindo consistência entre registros internos e extratos",
+        "Processamento de lançamentos e estornos de cartões no sistema",
+        "Suporte ao RH no recolhimento de assinaturas de funcionários",
+        "Digitalização e organização documental para apoio às rotinas administrativas"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Currículo Digital — API",
+      "description": "Este próprio currículo: dados servidos via JSON e renderizados como uma interface interativa, publicado no GitHub Pages.",
+      "url": ""
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ícaro Bastos — Currículo Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="scanlines"></div>
+
+<header class="topbar">
+  <div class="topbar-left">
+    <span class="dot"></span>
+    <span class="topbar-label">curriculo.json</span>
+  </div>
+  <div class="topbar-right" id="statusLine">GET /api/profile</div>
+</header>
+
+<main class="boot" id="bootScreen">
+  <pre id="bootLog"></pre>
+</main>
+
+<div class="app" id="app" hidden>
+
+  <aside class="profile-card">
+    <div class="avatar">IB</div>
+    <h1 class="name" id="p-name"></h1>
+    <p class="role" id="p-role"></p>
+    <p class="location" id="p-location"></p>
+    <div class="status-pill">
+      <span class="pulse"></span>
+      <span id="p-status"></span>
+    </div>
+    <p class="summary" id="p-summary"></p>
+    <div class="contact">
+      <a id="p-email" href="#" class="contact-link"></a>
+      <a id="p-linkedin" href="#" target="_blank" rel="noopener" class="contact-link">LinkedIn ↗</a>
+    </div>
+  </aside>
+
+  <div class="main-col">
+
+    <section class="panel">
+      <h2 class="panel-title">// SKILL TREE</h2>
+      <div class="skill-group">
+        <h3 class="skill-group-title">Domínio</h3>
+        <div id="skills-mastered" class="skill-list"></div>
+      </div>
+      <div class="skill-group">
+        <h3 class="skill-group-title">Em desenvolvimento</h3>
+        <div id="skills-learning" class="skill-list"></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 class="panel-title">EXPERIENCE // MISSION LOG</h2>
+      <div id="experience-log" class="timeline"></div>
+    </section>
+
+    <section class="panel">
+      <h2 class="panel-title">PROJECTS // QUEST LOG</h2>
+      <div id="projects-list" class="project-grid"></div>
+    </section>
+
+    <section class="panel">
+      <h2 class="panel-title">// EDUCATION</h2>
+      <div id="education-list"></div>
+    </section>
+
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

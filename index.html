@@ -27,25 +27,28 @@
 <div class="app" id="app" hidden>
 
   <aside class="profile-card">
-    <div class="avatar">IB</div>
-    <h1 class="name" id="p-name"></h1>
-    <p class="role" id="p-role"></p>
-    <p class="location" id="p-location"></p>
-    <div class="status-pill">
-      <span class="pulse"></span>
-      <span id="p-status"></span>
-    </div>
-    <p class="summary" id="p-summary"></p>
-    <div class="contact">
-      <a id="p-email" href="#" class="contact-link"></a>
-      <a id="p-linkedin" href="#" target="_blank" rel="noopener" class="contact-link">LinkedIn ↗</a>
+    <div class="profile-card-inner">
+      <a class="edit-icon profile-edit" href="https://github.com/ibastts/icarobastos.github.io/edit/main/curriculo.json" target="_blank" rel="noopener" title="Editar dados no GitHub">✎ editar</a>
+      <div class="avatar">IB</div>
+      <h1 class="name" id="p-name"></h1>
+      <p class="role" id="p-role"></p>
+      <p class="location" id="p-location"></p>
+      <div class="status-pill">
+        <span class="pulse"></span>
+        <span id="p-status"></span>
+      </div>
+      <p class="summary" id="p-summary"></p>
+      <div class="contact">
+        <a id="p-email" href="#" class="contact-link"></a>
+        <a id="p-linkedin" href="#" target="_blank" rel="noopener" class="contact-link">LinkedIn ↗</a>
+      </div>
     </div>
   </aside>
 
   <div class="main-col">
 
     <section class="panel">
-      <h2 class="panel-title">// SKILL TREE</h2>
+      <h2 class="panel-title">// SKILL TREE <a class="edit-icon" href="https://github.com/ibastts/icarobastos.github.io/edit/main/curriculo.json" target="_blank" rel="noopener" title="Editar no GitHub">✎</a></h2>
       <div class="skill-group">
         <h3 class="skill-group-title">Domínio</h3>
         <div id="skills-mastered" class="skill-list"></div>
@@ -57,22 +60,27 @@
     </section>
 
     <section class="panel">
-      <h2 class="panel-title">EXPERIENCE // MISSION LOG</h2>
+      <h2 class="panel-title">EXPERIENCE // MISSION LOG <a class="edit-icon" href="https://github.com/ibastts/icarobastos.github.io/edit/main/curriculo.json" target="_blank" rel="noopener" title="Editar no GitHub">✎</a></h2>
       <div id="experience-log" class="timeline"></div>
     </section>
 
     <section class="panel">
-      <h2 class="panel-title">PROJECTS // QUEST LOG</h2>
+      <h2 class="panel-title">PROJECTS // QUEST LOG <a class="edit-icon" href="https://github.com/ibastts/icarobastos.github.io/edit/main/curriculo.json" target="_blank" rel="noopener" title="Editar no GitHub">✎</a></h2>
       <div id="projects-list" class="project-grid"></div>
     </section>
 
     <section class="panel">
-      <h2 class="panel-title">// EDUCATION</h2>
+      <h2 class="panel-title">// EDUCATION <a class="edit-icon" href="https://github.com/ibastts/icarobastos.github.io/edit/main/curriculo.json" target="_blank" rel="noopener" title="Editar no GitHub">✎</a></h2>
       <div id="education-list"></div>
     </section>
 
   </div>
 </div>
+
+<footer class="footer">
+  <span>currículo.json · build via GitHub Pages</span>
+  <span>última atualização: ago/2026 · <a href="https://github.com/ibastts/icarobastos.github.io" target="_blank" rel="noopener">ver repositório ↗</a></span>
+</footer>
 
 <script src="script.js"></script>
 </body>

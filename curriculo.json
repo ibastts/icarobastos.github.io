@@ -7,7 +7,8 @@
     "summary": "Profissional administrativo com sólida vivência em rotinas de departamento pessoal, fiscal e financeiro. Atuação com lançamento de títulos, conciliação bancária, gestão de contratos e obrigações fiscais em sistemas como Protheus, Workfinity e Lexio. Em transição para a área de dados, desenvolvendo Python, SQL e automação de processos.",
     "email": "icarocaue79@gmail.com",
     "links": {
-      "linkedin": "https://www.linkedin.com/in/ícaro-bastos"
+      "linkedin": "https://www.linkedin.com/in/ícaro-bastos",
+      "github": "https://github.com/ibastts"
     }
   },
   "education": [
@@ -93,7 +94,7 @@
     {
       "name": "Currículo Digital — API",
       "description": "Este próprio currículo: dados servidos via JSON e renderizados como uma interface interativa, publicado no GitHub Pages.",
-      "url": ""
+      "url": "https://ibastts.github.io"
     }
   ]
 }

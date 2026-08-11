@@ -21,6 +21,7 @@ async function boot() {
   document.getElementById('statusLine').textContent = '200 OK';
 
   animateSkillBars();
+  setupPanels();
 }
 
 function sleep(ms) {
@@ -53,6 +54,17 @@ function render(data) {
   renderExperience(experience);
   renderProjects(projects);
   renderEducation(education);
+
+  const totalSkills = skills.mastered.length + skills.learning.length;
+  setSummary('skills-summary', `200 OK · ${totalSkills} competências · passe o mouse ou toque para ver`);
+  setSummary('experience-summary', `200 OK · ${experience.length} experiências registradas · passe o mouse ou toque para ver`);
+  setSummary('projects-summary', `200 OK · ${projects.length} projeto${projects.length === 1 ? '' : 's'} documentado${projects.length === 1 ? '' : 's'} · passe o mouse ou toque para ver`);
+  setSummary('education-summary', `200 OK · ${education.length} formação registrada · passe o mouse ou toque para ver`);
+}
+
+function setSummary(id, text) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = text;
 }
 
 function renderSkills(containerId, list) {
@@ -110,6 +122,57 @@ function renderEducation(list) {
       <div class="edu-period">${edu.period}</div>
     </div>
   `).join('');
+}
+
+function setupPanels() {
+  document.querySelectorAll('[data-panel]').forEach(panel => {
+    const title = panel.querySelector('.panel-title');
+    const body = panel.querySelector('.panel-body');
+
+    const open = () => {
+      panel.classList.add('is-open');
+      title.setAttribute('aria-expanded', 'true');
+      body.style.maxHeight = body.scrollHeight + 'px';
+    };
+
+    const close = () => {
+      panel.classList.remove('is-open');
+      title.setAttribute('aria-expanded', 'false');
+      body.style.maxHeight = '0px';
+    };
+
+    // Hover no desktop: abre ao entrar, fecha ao sair (a menos que esteja fixado)
+    panel.addEventListener('mouseenter', open);
+    panel.addEventListener('mouseleave', () => {
+      if (!panel.classList.contains('is-pinned')) close();
+    });
+
+    // Clique/toque: fixa aberto (bom para celular, onde não existe hover)
+    title.addEventListener('click', () => {
+      const pinned = panel.classList.toggle('is-pinned');
+      if (pinned) {
+        open();
+      } else {
+        close();
+      }
+    });
+
+    // Acessibilidade: Enter/Espaço também alternam
+    title.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        title.click();
+      }
+    });
+  });
+
+  // Recalcula a altura de painéis abertos ao redimensionar a janela/girar o celular
+  window.addEventListener('resize', () => {
+    document.querySelectorAll('[data-panel].is-open').forEach(panel => {
+      const body = panel.querySelector('.panel-body');
+      body.style.maxHeight = body.scrollHeight + 'px';
+    });
+  });
 }
 
 function animateSkillBars() {

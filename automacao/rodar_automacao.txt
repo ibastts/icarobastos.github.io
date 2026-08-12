@@ -1,0 +1,2 @@
+Pra rodar a automação no python, use esse código:
+python analisar_vagas.py

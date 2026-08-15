@@ -4,7 +4,7 @@ Alguns dos meu projetos!
 
 Curriculo digital:
 
-Aplicação web interativa desenvolvida para expor minhas experiências profissionais, habilidades e formação de forma dinâmica. Os dados da aplicação são consumidos diretamente a partir de uma estrutura de dados centralizada em formato **JSON**.
+Aplicação web interativa desenvolvida para expor minhas experiências profissionais, habilidades e formação de forma dinâmica. Os dados da aplicação são consumidos diretamente a partir de uma estrutura de dados centralizada em formato.
 ---
 Pasta de automação: 
 

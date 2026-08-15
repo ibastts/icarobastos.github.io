@@ -35,44 +35,7 @@ O JavaScript faz a leitura desse arquivo e monta a interface da página automati
 - CSS3
 - JavaScript
 - JSON
-
-## Como visualizar o projeto
-
-Você pode abrir o arquivo `index.html` diretamente no navegador ou rodar um servidor local, por exemplo:
-
-```bash
-python -m http.server 8000
-```
-
-Depois acesse:
-
-```text
-http://localhost:8000
-```
-
-## Personalização
-
-Para alterar as informações do currículo, basta editar o arquivo `curriculo.json`.
-
-Exemplo de estrutura:
-
-```json
-{
-  "profile": {
-    "name": "Seu Nome",
-    "role": "Seu Cargo",
-    "location": "Sua Cidade",
-    "status": "Disponível para oportunidades",
-    "summary": "Resumo profissional",
-    "email": "seuemail@email.com",
-    "links": {
-      "linkedin": "https://linkedin.com/in/seu-perfil",
-      "github": "https://github.com/seu-usuario"
-    }
-  }
-}
-```
-
+  
 ## Observações
 
 Este projeto foi pensado para servir como currículo digital, portfólio profissional ou página de apresentação pessoal, sendo facilmente adaptável para outros perfis.

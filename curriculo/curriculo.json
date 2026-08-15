@@ -95,6 +95,11 @@
       "name": "Currículo Digital — API",
       "description": "Este próprio currículo: dados servidos via JSON e renderizados como uma interface interativa, publicado no GitHub Pages.",
       "url": "https://ibastts.github.io"
+    },
+    {
+      "name": "Analisador de Compatibilidade de Vagas",
+      "description": "Ferramenta desenvolvida em Python que analisa a compatibilidade entre o perfil do candidato e as exigências de uma vaga de emprego, fornecendo insights sobre pontos fortes e áreas de melhoria.",
+      "url": "https://github.com/ibastts/icarobastos.github.io/tree/main/automacao"
     }
   ]
 }

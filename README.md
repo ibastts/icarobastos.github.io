@@ -1,20 +1,27 @@
-# icarobastos.github.io
-Alguns dos meu projetos!
+# 🚀 Meus Projetos — Ícaro Bastos
+
+Bem-vindo ao meu repositório! Abaixo estão reunidos alguns dos meus principais projetos de desenvolvimento e automação.
+
 ---
 
-Curriculo digital:
+## 📄 Currículo Digital
 
-Aplicação web interativa desenvolvida para expor minhas experiências profissionais, habilidades e formação de forma dinâmica. Os dados da aplicação são consumidos diretamente a partir de uma estrutura de dados centralizada em formato.
+Aplicação web interativa desenvolvida para expor minhas experiências profissionais, habilidades e formação de forma dinâmica. Os dados da aplicação são consumidos diretamente a partir de uma estrutura de dados centralizada em formato JSON.
+
+* 🔗 **Acesse o projeto:** [ibastts.github.io](https://ibastts.github.io)
+* 📂 **Pasta do projeto:** [`/curriculo`](https://github.com/ibastts/icarobastos.github.io/tree/main/curriculo)
+
 ---
-Pasta de automação: 
 
-Automação e Mapeamento de Candidaturas a Vagas de Emprego
-Projeto de automação em Python desenvolvido para capturar, filtrar e analisar a compatibilidade de vagas de emprego (remotas e presenciais/híbridas nas regiões de Ilhéus e Itabuna/BA), com foco nas áreas Administrativa, Fiscal, Financeira, Recursos Humanos e Comercial.
-Principais Funcionalidades
-Captura Multicanais: Integração e busca automatizada em diversas plataformas (LinkedIn, Indeed, InfoJobs, Vagas.com, Catho, BNE, SineBahia, RioVagas, Glassdoor, TrabalhaBrasil e ATSs de grandes empresas via Greenhouse/Gupy).
+## 🤖 Automação e Mapeamento de Candidaturas
 
-Análise de Compatibilidade: Algoritmo em Python (Analisar vagas.py) para cálculo de pontuação de aderência técnica e comportamental conforme palavras-chave do candidato.
+Projeto em Python desenvolvido para capturar, filtrar e analisar a compatibilidade de vagas de emprego (remotas e presenciais/híbridas nas regiões de Ilhéus e Itabuna/BA), focado nas áreas Administrativa, Fiscal, Financeira, Recursos Humanos e Comercial.
 
-Escopo Expansível de Palavras-Chave: Mapeamento inteligente cobrindo rotinas de Departamento Pessoal, Fiscal, Contábil, Faturamento, Suporte Financeiro, Comercial, Atendimento e Negócios.
+📂 **Pasta do projeto:** [`/automacao`](https://github.com/ibastts/icarobastos.github.io/tree/main/automacao)
 
-Consolidação em Dataframes: Exportação e estruturação dos dados brutos e classificados em arquivos Excel (Vagas input.xlsx e Vagas compatibilidade.xlsx).
+### 📌 Principais Funcionalidades
+
+* **Captura Multicanais:** Integração e busca automatizada em diversas plataformas (LinkedIn, Indeed, InfoJobs, Vagas.com, Catho, BNE, SineBahia, RioVagas, Glassdoor, TrabalhaBrasil e ATSs via Greenhouse/Gupy).
+* **Análise de Compatibilidade:** Algoritmo em Python (`Analisar vagas.py`) para cálculo de pontuação de aderência técnica e comportamental conforme palavras-chave do candidato.
+* **Escopo Expansível de Palavras-Chave:** Mapeamento inteligente cobrindo rotinas de DP, Fiscal, Contábil, Faturamento, Suporte Financeiro, Comercial, Atendimento e Negócios.
+* **Consolidação em Dataframes:** Exportação e estruturação dos dados brutos e classificados em arquivos Excel (`Vagas input.xlsx` e `Vagas compatibilidade.xlsx`).

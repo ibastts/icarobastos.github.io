@@ -8,7 +8,7 @@ Bem-vindo ao meu repositório! Abaixo estão reunidos alguns dos meus principais
 
 Aplicação web interativa desenvolvida para expor minhas experiências profissionais, habilidades e formação de forma dinâmica. Os dados da aplicação são consumidos diretamente a partir de uma estrutura de dados centralizada em formato JSON.
 
-* 🔗 **Acesse o projeto:** [ibastts.github.io](https://ibastts.github.io)
+* 🔗 **Acesse o projeto:** [ibastts.github.io](https://ibastts.github.io/icarobastos.github.io/)
 * 📂 **Pasta do projeto:** [`/curriculo`](https://github.com/ibastts/icarobastos.github.io/tree/main/curriculo)
 
 ---

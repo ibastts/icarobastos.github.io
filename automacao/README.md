@@ -13,8 +13,7 @@ vagas que achou)        score)            ordenadas por compatibilidade)
 ```
 
 O script **não busca vagas sozinho na internet** — plataformas como LinkedIn e
-Indeed bloqueiam esse tipo de automação nos termos de uso. Você (ou eu, no
-chat) cola as vagas encontradas na planilha de entrada, e o script só faz a
+Indeed bloqueiam esse tipo de automação nos termos de uso. Você cola as vagas encontradas na planilha de entrada, e o script só faz a
 parte de organizar, pontuar e formatar.
 
 ---

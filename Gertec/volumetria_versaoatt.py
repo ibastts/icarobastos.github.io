@@ -116,7 +116,10 @@ def data_criacao_arquivo(caminho_arquivo: str) -> str:
     try:
         ts = os.path.getctime(caminho_arquivo)
     except Exception:
-        ts = os.path.getmtime(caminho_arquivo)
+        try:
+            ts = os.path.getmtime(caminho_arquivo)
+        except Exception:
+            return "desconhecida"
     return datetime.fromtimestamp(ts).strftime('%d/%m/%Y %H:%M')
 
 
@@ -126,7 +129,7 @@ def carregar_relatorio_existente(caminho_csv: str) -> dict:
     dados = {}
     if os.path.isfile(caminho_csv):
         try:
-            with open(caminho_csv, newline='', encoding='utf-8') as f:
+            with open(caminho_csv, newline='', encoding='utf-8-sig') as f:
                 leitor = csv.DictReader(f)
                 for linha in leitor:
                     chave = (linha.get('filial'), linha.get('tipo'), linha.get('documento'))
@@ -146,6 +149,10 @@ def main():
     data_hora = agora.strftime('%d/%m/%Y %H:%M')
     print(f"Volumetria diária ({data_hora})\n")
 
+    if not os.path.isdir(BASE_PATH):
+        print(f"⚠️  ATENÇÃO: caminho base não acessível agora: {BASE_PATH}")
+        print("   (rede/OneDrive fora do ar? Os totais abaixo vão sair zerados, não é ausência real de notas.)\n")
+
     resultados_titulos = {}
     resultados_servicos = {}
     arquivos_titulos = {}
@@ -153,12 +160,14 @@ def main():
     
     # Conta arquivos de TÍTULOS
     print("📋 TÍTULOS:")
+    pastas_nao_encontradas = []
     for filial, caminho_base in FILIAIS.items():
         pasta_arquivo = encontrar_pasta_para_registro(caminho_base, mmaa)
 
         if pasta_arquivo is None:
             qtd = 0
             arquivos = []
+            pastas_nao_encontradas.append(('titulos', filial))
         else:
             arquivos = listar_arquivos(pasta_arquivo)
             qtd = len(arquivos)
@@ -175,6 +184,7 @@ def main():
         if pasta_arquivo is None:
             qtd = 0
             arquivos = []
+            pastas_nao_encontradas.append(('servicos', filial))
         else:
             arquivos = listar_arquivos(pasta_arquivo)
             qtd = len(arquivos)
@@ -182,6 +192,11 @@ def main():
         resultados_servicos[filial] = qtd
         arquivos_servicos[filial] = arquivos
         print(f"  📁 {filial}: {qtd} arquivo(s)")
+
+    if pastas_nao_encontradas:
+        print(f"\n⚠️  Pasta '{mmaa}.Para-Registro' não encontrada para: "
+              + ", ".join(f"{f} ({t})" for t, f in pastas_nao_encontradas))
+        print("   (pode ser que o time ainda não criou a pasta do mês, ou o nome/local mudou)")
 
     # Calcula totais
     total_titulos = sum(resultados_titulos.values())
@@ -210,7 +225,7 @@ def main():
                 documento = os.path.basename(f)
                 chave = (filial, tipo, documento)
                 anterior = dados_anteriores.get(chave)
-                data_adicionado = anterior['data_adicionado'] if anterior else data_criacao_arquivo(f)
+                data_adicionado = (anterior or {}).get('data_adicionado') or data_criacao_arquivo(f)
                 linhas_novas[chave] = {
                     'filial': filial,
                     'tipo': tipo,
@@ -224,7 +239,7 @@ def main():
     processar(arquivos_servicos, 'servicos')
 
     try:
-        with open(relatorio_path, 'w', newline='', encoding='utf-8') as csvfile:
+        with open(relatorio_path, 'w', newline='', encoding='utf-8-sig') as csvfile:
             writer = csv.DictWriter(
                 csvfile,
                 fieldnames=['filial', 'tipo', 'documento', 'caminho', 'data_adicionado', 'ultima_verificacao']

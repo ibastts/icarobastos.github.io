@@ -100,6 +100,9 @@
       "name": "Analisador de Compatibilidade de Vagas",
       "description": "Ferramenta desenvolvida em Python que analisa a compatibilidade entre o perfil do candidato e as exigências de uma vaga de emprego, fornecendo insights sobre pontos fortes e áreas de melhoria.",
       "url": "https://github.com/ibastts/icarobastos.github.io/tree/main/automacao"
+    },
+    {
+      "name": "Automação de Volumetria",
+      "description": "Script em Python para mapeamento automatizado de diretórios e acompanhamento do fluxo de documentos fiscais e títulos. Identifica dinamicamente o mês vigente, consolida o volume por filial/unidade e realiza o merge do histórico em CSV com codificação UTF-8-SIG.",
     }
   ]
-}

@@ -95,6 +95,11 @@
       "name": "Currículo Digital — API",
       "description": "Este próprio currículo: dados servidos via JSON e renderizados como uma interface interativa, publicado no GitHub Pages.",
       "url": "https://ibastts.github.io"
+ "projects": [
+    {
+      "name": "Currículo Digital — API",
+      "description": "Este próprio currículo: dados servidos via JSON e renderizados como uma interface interativa, publicado no GitHub Pages.",
+      "url": "https://ibastts.github.io"
     },
     {
       "name": "Analisador de Compatibilidade de Vagas",
@@ -104,5 +109,6 @@
     {
       "name": "Automação de Volumetria",
       "description": "Script em Python para mapeamento automatizado de diretórios e acompanhamento do fluxo de documentos fiscais e títulos. Identifica dinamicamente o mês vigente, consolida o volume por filial/unidade e realiza o merge do histórico em CSV com codificação UTF-8-SIG.",
+      "url": "https://github.com/ibastts/icarobastos.github.io/tree/main/automacao"
     }
   ]

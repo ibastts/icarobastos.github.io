@@ -95,11 +95,6 @@
       "name": "Currículo Digital — API",
       "description": "Este próprio currículo: dados servidos via JSON e renderizados como uma interface interativa, publicado no GitHub Pages.",
       "url": "https://ibastts.github.io"
- "projects": [
-    {
-      "name": "Currículo Digital — API",
-      "description": "Este próprio currículo: dados servidos via JSON e renderizados como uma interface interativa, publicado no GitHub Pages.",
-      "url": "https://ibastts.github.io"
     },
     {
       "name": "Analisador de Compatibilidade de Vagas",
@@ -112,3 +107,4 @@
       "url": "https://github.com/ibastts/icarobastos.github.io/tree/main/automacao"
     }
   ]
+}

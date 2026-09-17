@@ -126,61 +126,61 @@
       ]
     }
   ],
-  "projects": [
+ "projects": [
     {
       "name": "Painel de Automações — Departamento Fiscal",
       "description": "Dashboard interativo e calculadora de eficiência com 12 processos catalogados e 9 automações concluídas.",
-      "url": "https://ibastts.github.io/icarobastos.github.io/Gertec/dash.html"
+      "url": "Gertec/dash.html"
     },
     {
       "name": "1. Consulta e Download SEFAZ-AM",
       "description": "Automação em Python (PyAutoGUI) que acessa o portal SEFAZ-AM, consulta extratos de DI por processo e realiza o download em PDF.",
-      "url": "https://github.com/ibastts/icarobastos.github.io/tree/main/Gertec"
+      "url": "Gertec"
     },
     {
       "name": "2. Renomear Arquivos em Lote",
       "description": "Script de automação para renomear arquivos em lote com base em regras operacionais.",
-      "url": "https://github.com/ibastts/icarobastos.github.io/tree/main/Gertec"
+      "url": "Gertec"
     },
     {
       "name": "3. Organização de Extratos DI",
       "description": "Automação para mover e organizar automaticamente os extratos de Declaração de Importação.",
-      "url": "https://github.com/ibastts/icarobastos.github.io/tree/main/Gertec"
+      "url": "Gertec"
     },
     {
       "name": "4. Formatação de Etiquetas Zebra",
       "description": "Geração e formatação automatizada de etiquetas térmicas para impressoras Zebra.",
-      "url": "https://github.com/ibastts/icarobastos.github.io/tree/main/Gertec"
+      "url": "Gertec"
     },
     {
       "name": "5. Estruturação de Pastas Mensais",
       "description": "Script para criação automática da estrutura de pastas mensais referentes a Notas Fiscais.",
-      "url": "https://github.com/ibastts/icarobastos.github.io/tree/main/Gertec"
+      "url": "Gertec"
     },
     {
       "name": "6. Indicativo de Volumetria Fiscal",
       "description": "Consolidação automática de dados fiscais de 8 filiais com exportação em CSV.",
-      "url": "https://github.com/ibastts/icarobastos.github.io/tree/main/automacao"
+      "url": "automacao"
     },
     {
       "name": "7. Mover Arquivos no SharePoint",
       "description": "Rotina automatizada de movimentação e organização de documentos no SharePoint.",
-      "url": "https://github.com/ibastts/icarobastos.github.io/tree/main/Gertec"
+      "url": "Gertec"
     },
     {
       "name": "8. Relatório de Transferência entre Filiais (GT1444)",
       "description": "Tratamento e formatação automatizada de relatórios do sistema Protheus utilizando Python e openpyxl.",
-      "url": "https://github.com/ibastts/icarobastos.github.io/tree/main/Gertec"
+      "url": "Gertec"
     },
     {
       "name": "9. Correção de Inconsistências de Centro de Custo",
       "description": "Execução de consultas SQL para identificação e correção de divergências contábeis no ERP Protheus.",
-      "url": "https://github.com/ibastts/icarobastos.github.io/tree/main/Gertec"
+      "url": "Gertec"
     },
     {
       "name": "Analisador de Compatibilidade de Vagas",
       "description": "Ferramenta desenvolvida em Python que analisa a compatibilidade entre o perfil do candidato e as exigências de uma vaga de emprego.",
-      "url": "https://github.com/ibastts/icarobastos.github.io/tree/main/automacao"
+      "url": "automacao"
     }
   ]
 }

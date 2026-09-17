@@ -20,55 +20,19 @@
   ],
   "skills": {
     "mastered": [
-      {
-        "name": "Excel Avançado / Tabelas Dinâmicas",
-        "level": 90
-      },
-      {
-        "name": "Power BI",
-        "level": 75
-      },
-      {
-        "name": "Protheus",
-        "level": 80
-      },
-      {
-        "name": "Workfinity",
-        "level": 80
-      },
-      {
-        "name": "Lexio",
-        "level": 80
-      },
-      {
-        "name": "Pacote Office",
-        "level": 90
-      },
-      {
-        "name": "Rotinas Fiscais (e-CAC / E115 / CCE)",
-        "level": 75
-      },
-      {
-        "name": "Conciliação Bancária",
-        "level": 80
-      }
+      { "name": "Excel Avançado / Tabelas Dinâmicas", "level": 90 },
+      { "name": "Power BI", "level": 75 },
+      { "name": "Protheus", "level": 80 },
+      { "name": "Workfinity", "level": 80 },
+      { "name": "Lexio", "level": 80 },
+      { "name": "Pacote Office", "level": 90 },
+      { "name": "Rotinas Fiscais (e-CAC / E115 / CCE)", "level": 75 },
+      { "name": "Conciliação Bancária", "level": 80 }
     ],
     "learning": [
-      {
-        "name": "Python",
-        "source": "Hashtag Treinamentos",
-        "level": 35
-      },
-      {
-        "name": "SQL",
-        "source": "Hashtag Treinamentos",
-        "level": 30
-      },
-      {
-        "name": "Power Automate",
-        "source": "Microsoft",
-        "level": 30
-      }
+      { "name": "Python", "source": "Hashtag Treinamentos", "level": 35 },
+      { "name": "SQL", "source": "Hashtag Treinamentos", "level": 30 },
+      { "name": "Power Automate", "source": "Microsoft", "level": 30 }
     ]
   },
   "experience": [
@@ -126,7 +90,7 @@
       ]
     }
   ],
- "projects": [
+  "projects": [
     {
       "name": "Painel de Automações — Departamento Fiscal",
       "description": "Dashboard interativo e calculadora de eficiência com 12 processos catalogados e 9 automações concluídas.",

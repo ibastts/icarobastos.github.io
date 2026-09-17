@@ -99,19 +99,59 @@ const fallbackProfile = {
   ],
   projects: [
     {
-      name: 'Currículo Digital — API',
-      description: 'Este próprio currículo: dados servidos via JSON e renderizados como uma interface interativa, publicado no GitHub Pages.',
-      url: 'https://ibastts.github.io'
+      name: 'Painel de Automações — Departamento Fiscal',
+      description: 'Dashboard interativo e calculadora de eficiência com 12 processos catalogados e 9 automações concluídas.',
+      url: ''
+    },
+    {
+      name: '1. Consulta e Download SEFAZ-AM',
+      description: 'Automação em Python (PyAutoGUI) que acessa o portal SEFAZ-AM, consulta extratos de DI por processo e realiza o download em PDF.',
+      url: ''
+    },
+    {
+      name: '2. Renomear Arquivos em Lote',
+      description: 'Script de automação para renomear arquivos em lote com base em regras operacionais.',
+      url: ''
+    },
+    {
+      name: '3. Organização de Extratos DI',
+      description: 'Automação para mover e organizar automaticamente os extratos de Declaração de Importação.',
+      url: ''
+    },
+    {
+      name: '4. Formatação de Etiquetas Zebra',
+      description: 'Geração e formatação automatizada de etiquetas térmicas para impressoras Zebra.',
+      url: ''
+    },
+    {
+      name: '5. Estruturação de Pastas Mensais',
+      description: 'Script para criação automática da estrutura de pastas mensais referentes a Notas Fiscais.',
+      url: ''
+    },
+    {
+      name: '6. Indicativo de Volumetria Fiscal',
+      description: 'Consolidação automática de dados fiscais de 8 filiais com exportação em CSV.',
+      url: ''
+    },
+    {
+      name: '7. Mover Arquivos no SharePoint',
+      description: 'Rotina automatizada de movimentação e organização de documentos no SharePoint.',
+      url: ''
+    },
+    {
+      name: '8. Relatório de Transferência entre Filiais (GT1444)',
+      description: 'Tratamento e formatação automatizada de relatórios do sistema Protheus utilizando Python e openpyxl.',
+      url: ''
+    },
+    {
+      name: '9. Correção de Inconsistências de Centro de Custo',
+      description: 'Execução de consultas SQL para identificação e correção de divergências contábeis no ERP Protheus.',
+      url: ''
     },
     {
       name: 'Analisador de Compatibilidade de Vagas',
-      description: 'Ferramenta desenvolvida em Python que analisa a compatibilidade entre o perfil do candidato e as exigências de uma vaga de emprego, fornecendo insights sobre pontos fortes e áreas de melhoria.',
-      url: 'https://github.com/ibastts/icarobastos.github.io/tree/main/automacao'
-    },
-    {
-      name: 'Automação de Volumetria',
-      description: 'Script em Python para mapeamento automatizado de diretórios e acompanhamento do fluxo de documentos fiscais e títulos. Identifica dinamicamente o mês vigente, consolida o volume por filial/unidade e realiza o merge do histórico em CSV com codificação UTF-8-SIG.',
-      url: 'https://github.com/ibastts/icarobastos.github.io/tree/main/automacao'
+      description: 'Ferramenta desenvolvida em Python que analisa a compatibilidade entre o perfil do candidato e as exigências de uma vaga de emprego.',
+      url: ''
     }
   ]
 };
@@ -140,7 +180,11 @@ function sleep(ms) {
 
 async function fetchProfile() {
   try {
-    const res = await fetch('curriculo.json', { cache: 'no-store' });
+    // Tenta primeiro o JSON dentro do diretório /curriculo, caso contrário recua para a raiz
+    let res = await fetch('curriculo/curriculo.json', { cache: 'no-store' });
+    if (!res.ok) {
+      res = await fetch('curriculo.json', { cache: 'no-store' });
+    }
     if (!res.ok) {
       throw new Error(`HTTP ${res.status}`);
     }

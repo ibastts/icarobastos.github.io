@@ -1,53 +1,111 @@
-/* Container de Projetos: ajustado para manter um grid alinhado */
+/* ==========================================================================
+   Seção de Projetos - Cards Compactos com Expansão (Hover)
+   ========================================================================== */
+
+/* 1. Container de Projetos: Mantém um grid organizado e responsivo */
 .project-grid {
   display: grid;
+  /* Cria colunas automáticas de no mínimo 260px, expandindo para preencher o espaço */
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 16px;
-  align-items: start;
+  gap: 20px; /* Aumentei levemente o espaçamento para um visual mais limpo */
+  align-items: start; /* Alinha os cards pelo topo */
+  padding: 10px 0;
 }
 
-/* Card Compacto com transição suave */
+/* 2. Card de Projeto (Estado Compacto): Design inicial e transições */
 .project-card {
-  border: 1px solid var(--surface-border);
+  position: relative; /* Necessário para z-index no hover */
+  border: 1px solid var(--surface-border); /* Usa a borda sutil do tema */
   border-radius: 12px;
-  padding: 14px 16px;
-  background: rgba(255, 255, 255, 0.02);
+  padding: 18px 20px; /* Espaçamento interno confortável */
+  background: rgba(255, 255, 255, 0.015); /* Fundo quase transparente */
   cursor: pointer;
   
-  /* Esconde o excesso no estado compacto */
+  /* --- Mágica da Expansão --- */
+  /* Fixa a altura inicial para mostrar apenas o título (ajuste conforme necessário) */
   max-height: 85px; 
-  overflow: hidden;
+  overflow: hidden; /* Esconde a descrição e links inicialmente */
   
-  /* Transições suaves para altura, cores e sombra */
-  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+  /* --- Transições Suaves e Performance --- */
+  /* cubic-bezier para um efeito 'snap' elegante na expansão */
+  transition: max-height 0.5s cubic-bezier(0.23, 1, 0.32, 1),
               border-color 0.3s ease,
               transform 0.3s ease,
               box-shadow 0.3s ease,
-              background 0.3s ease;
-}
-
-/* Estado Expandido ao passar o mouse */
-.project-card:hover {
-  max-height: 300px; /* Altura máxima suficiente para exibir todo o texto */
-  background: rgba(18, 28, 42, 0.95);
-  border-color: rgba(102, 233, 255, 0.5);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 28px rgba(5, 10, 18, 0.5);
-  z-index: 2; /* Garante que o card expandido fique sobreposto se necessário */
-}
-
-/* Ajuste fino na descrição */
-.project-desc {
-  font-size: 12.5px;
-  color: var(--text-muted);
-  line-height: 1.6;
-  margin: 8px 0 12px;
+              background-color 0.3s ease;
   
-  /* Transição suave de opacidade no texto */
-  opacity: 0.7;
-  transition: opacity 0.3s ease;
+  /* Melhora a renderização de animações no Chrome/Safari */
+  will-change: max-height, transform, box-shadow; 
 }
 
+/* 3. Efeito de Destaque e Expansão (Hover) */
+.project-card:hover {
+  /* Expande para uma altura máxima que caiba todo o conteúdo (descrição + link) */
+  max-height: 400px; 
+  
+  /* --- Estilo Cyberpunk Ativo --- */
+  background-color: rgba(18, 28, 42, 0.98); /* Fundo mais escuro e opaco */
+  border-color: rgba(102, 233, 255, 0.6); /* Borda Ciano Neon mais brilhante */
+  
+  /* --- Efeito Visual de Elevação --- */
+  transform: translateY(-5px); /* Eleva o card levemente */
+  /* Sombra suave e difusa para profundidade */
+  box-shadow: 0 12px 30px rgba(5, 10, 18, 0.6); 
+  
+  z-index: 10; /* Garante que o card expandido fique sobre os outros no grid */
+}
+
+/* 4. Título do Projeto (Dentro do Card) */
+.project-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  /* Garante que o título nunca quebre em várias linhas no estado compacto */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 5. Descrição do Projeto (Oculta/Sutil no início) */
+.project-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin: 12px 0; /* Espaçamento vertical */
+  
+  /* --- Transição de Opacidade --- */
+  opacity: 0; /* Começa invisível */
+  transition: opacity 0.4s ease 0.1s; /* Aparece com um pequeno atraso após expandir */
+}
+
+/* Revela a descrição quando o card é expandido */
 .project-card:hover .project-desc {
   opacity: 1;
+}
+
+/* 6. Link do Projeto (Oculto/Sutil no início) */
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: rgba(102, 233, 255, 0.8); /* Cor Ciano sutil */
+  text-decoration: none;
+  font-weight: 500;
+  
+  /* --- Transição de Opacidade --- */
+  opacity: 0; /* Começa invisível */
+  transition: opacity 0.4s ease 0.2s; /* Aparece por último */
+}
+
+/* Revela o link quando o card é expandido */
+.project-card:hover .project-link {
+  opacity: 1;
+}
+
+/* Efeito de hover específico no link */
+.project-link:hover {
+  color: rgba(102, 233, 255, 1); /* Ciano total ao passar o mouse no link */
+  text-decoration: underline;
 }

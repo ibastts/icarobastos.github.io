@@ -1,0 +1,150 @@
+{
+  "profile": {
+    "name": "Ícaro Bastos",
+    "role": "Profissional Administrativo",
+    "location": "Ilhéus, Bahia, Brasil",
+    "status": "Disponível para novas oportunidades",
+    "summary": "Profissional administrativo com sólida vivência em rotinas de departamento pessoal, fiscal e financeiro. Atuação com lançamento de títulos, conciliação bancária, gestão de contratos e obrigações fiscais em sistemas como Protheus, Workfinity e Lexio. Em transição para a área de dados, desenvolvendo Python, SQL e automação de processos.",
+    "email": "icarocaue79@gmail.com",
+    "links": {
+      "linkedin": "https://www.linkedin.com/in/ícaro-bastos",
+      "github": "https://github.com/ibastts"
+    }
+  },
+  "education": [
+    {
+      "institution": "Anhanguera",
+      "degree": "Bacharelado em Administração",
+      "period": "Em andamento — 4º semestre"
+    }
+  ],
+  "skills": {
+    "mastered": [
+      { "name": "Excel Avançado / Tabelas Dinâmicas", "level": 90 },
+      { "name": "Power BI", "level": 75 },
+      { "name": "Protheus", "level": 80 },
+      { "name": "Workfinity", "level": 80 },
+      { "name": "Lexio", "level": 80 },
+      { "name": "Pacote Office", "level": 90 },
+      { "name": "Rotinas Fiscais (e-CAC / E115 / CCE)", "level": 75 },
+      { "name": "Conciliação Bancária", "level": 80 }
+    ],
+    "learning": [
+      { "name": "Python", "source": "Hashtag Treinamentos", "level": 35 },
+      { "name": "SQL", "source": "Hashtag Treinamentos", "level": 30 },
+      { "name": "Power Automate", "source": "Microsoft", "level": 30 }
+    ]
+  },
+  "experience": [
+    {
+      "role": "Assistente Administrativo",
+      "company": "Gertec",
+      "type": "Estágio",
+      "period": "jun/2026 — atual",
+      "location": "Presencial",
+      "highlights": [
+        "Lançamento de títulos financeiros no sistema, assegurando o correto processamento das informações",
+        "Elaboração de tabelas dinâmicas para mensuração de retrabalhos operacionais",
+        "Ajuste de centro de custo, assegurando a correta alocação das informações contábeis",
+        "Lançamentos de impostos federais via e-CAC e E115, mantendo a conformidade fiscal",
+        "Elaboração de CCE (Carta de Correção Eletrônica) para correção de informações fiscais"
+      ]
+    },
+    {
+      "role": "Assistente Administrativo",
+      "company": "GéRun",
+      "type": "Estágio",
+      "period": "fev/2025 — jun/2026",
+      "location": "Ilhéus, Bahia",
+      "highlights": [
+        "Manutenção e atualização de planilhas no Excel",
+        "Geração de relatórios de ordem de serviço no sistema Workfinity",
+        "Criação e monitoramento de contratos no sistema Lexio, do envio até a assinatura",
+        "Cadastro de clientes, vendedores e parceiros no sistema Protheus"
+      ]
+    },
+    {
+      "role": "Assistente Administrativo",
+      "company": "Prefeitura Municipal de Ilhéus",
+      "type": "Estágio",
+      "period": "mar/2023 — ago/2023",
+      "location": "Ilhéus, Bahia",
+      "highlights": [
+        "Confecção de planilhas para controle e organização de informações administrativas",
+        "Organização e arquivamento de documentos, seguindo padrões de arquivologia",
+        "Acompanhamento e controle de despesas do setor",
+        "Organização e manutenção de contratos públicos"
+      ]
+    },
+    {
+      "role": "Assistente Administrativo",
+      "company": "Kemigas",
+      "type": "Meio período / Aprendiz",
+      "period": "mar/2022 — jun/2023",
+      "location": "Ilhéus, Bahia",
+      "highlights": [
+        "Conciliação bancária, garantindo consistência entre registros internos e extratos",
+        "Processamento de lançamentos e estornos de cartões no sistema",
+        "Suporte ao RH no recolhimento de assinaturas de funcionários",
+        "Digitalização e organização documental para apoio às rotinas administrativas"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Painel de Automações — Departamento Fiscal",
+      "description": "Dashboard interativo e calculadora de eficiência com 12 processos catalogados e 9 automações concluídas.",
+      "url": ""
+    },
+    {
+      "name": "1. Consulta e Download SEFAZ-AM",
+      "description": "Automação em Python (PyAutoGUI) que acessa o portal SEFAZ-AM, consulta extratos de DI por processo e realiza o download em PDF.",
+      "url": ""
+    },
+    {
+      "name": "2. Renomear Arquivos em Lote",
+      "description": "Script de automação para renomear arquivos em lote com base em regras operacionais.",
+      "url": ""
+    },
+    {
+      "name": "3. Organização de Extratos DI",
+      "description": "Automação para mover e organizar automaticamente os extratos de Declaração de Importação.",
+      "url": ""
+    },
+    {
+      "name": "4. Formatação de Etiquetas Zebra",
+      "description": "Geração e formatação automatizada de etiquetas térmicas para impressoras Zebra.",
+      "url": ""
+    },
+    {
+      "name": "5. Estruturação de Pastas Mensais",
+      "description": "Script para criação automática da estrutura de pastas mensais referentes a Notas Fiscais.",
+      "url": ""
+    },
+    {
+      "name": "6. Indicativo de Volumetria Fiscal",
+      "description": "Consolidação automática de dados fiscais de 8 filiais com exportação em CSV.",
+      "url": ""
+    },
+    {
+      "name": "7. Mover Arquivos no SharePoint",
+      "description": "Rotina automatizada de movimentação e organização de documentos no SharePoint.",
+      "url": ""
+    },
+    {
+      "name": "8. Relatório de Transferência entre Filiais (GT1444)",
+      "description": "Tratamento e formatação automatizada de relatórios do sistema Protheus utilizando Python e openpyxl.",
+      "url": ""
+    },
+    {
+      "name": "9. Correção de Inconsistências de Centro de Custo",
+      "description": "Execução de consultas SQL para identificação e correção de divergências contábeis no ERP Protheus.",
+      "url": ""
+    },
+    {
+      "name": "Analisador de Compatibilidade de Vagas",
+      "description": "Ferramenta desenvolvida em Python que analisa a compatibilidade entre o perfil do candidato e as exigências de uma vaga de emprego.",
+      "url": ""
+    }
+  ]
+}

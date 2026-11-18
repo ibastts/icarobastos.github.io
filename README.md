@@ -1,27 +1,25 @@
-# 🚀 Meus Projetos — Ícaro Bastos
+# Meus Projetos — Ícaro Bastos
 
-Bem-vindo ao meu repositório! Abaixo estão reunidos alguns dos meus principais projetos de desenvolvimento e automação.
-
----
-
-## 📄 Currículo Digital
-
-Aplicação web interativa desenvolvida para expor minhas experiências profissionais, habilidades e formação de forma dinâmica. Os dados da aplicação são consumidos diretamente a partir de uma estrutura de dados centralizada em formato JSON.
-
-* 🔗 **Acesse o projeto:**[(https://ibastts.github.io/)](https://ibastts.github.io/icarobastos.github.io/)
-* 📂 **Pasta do projeto:** [`/curriculo`](https://github.com/ibastts/icarobastos.github.io/tree/main/curriculo)
+Repositório central de portfólio, currículo digital e projetos de automação de processos e análise de dados.
 
 ---
 
-## 🤖 Automação e Mapeamento de Candidaturas
+## Estrutura do Repositório
 
-Projeto em Python desenvolvido para capturar, filtrar e analisar a compatibilidade de vagas de emprego (remotas e presenciais/híbridas nas regiões de Ilhéus e Itabuna/BA), focado nas áreas Administrativa, Fiscal, Financeira, Recursos Humanos e Comercial.
+### 1. Currículo Digital (`index.html`, `curriculo.json`, `/curriculo`)
+Currículo e portfólio web interativo com interface estilo terminal, alimentado por uma estrutura JSON centralizada (`curriculo.json`) contendo perfil, habilidades, experiências profissionais, projetos e formação acadêmica.
 
-📂 **Pasta do projeto:** [`/automacao`](https://github.com/ibastts/icarobastos.github.io/tree/main/automacao)
+- **Acesso online:** [ibastts.github.io/icarobastos.github.io](https://ibastts.github.io/icarobastos.github.io/)
+- **Tecnologias:** HTML5, CSS3, JavaScript, JSON
 
-### 📌 Principais Funcionalidades
+### 2. Automação e Mapeamento de Candidaturas (`/automacao`)
+Projeto em Python para captura, filtragem e cálculo de compatibilidade de vagas de emprego nas áreas Administrativa, Fiscal, Financeira, DP/RH e Comercial, com geração de planilhas formatadas.
 
-* **Captura Multicanais:** Integração e busca automatizada em diversas plataformas (LinkedIn, Indeed, InfoJobs, Vagas.com, Catho, BNE, SineBahia, RioVagas, Glassdoor, TrabalhaBrasil e ATSs via Greenhouse/Gupy).
-* **Análise de Compatibilidade:** Algoritmo em Python (`Analisar vagas.py`) para cálculo de pontuação de aderência técnica e comportamental conforme palavras-chave do candidato.
-* **Escopo Expansível de Palavras-Chave:** Mapeamento inteligente cobrindo rotinas de DP, Fiscal, Contábil, Faturamento, Suporte Financeiro, Comercial, Atendimento e Negócios.
-* **Consolidação em Dataframes:** Exportação e estruturação dos dados brutos e classificados em arquivos Excel (`Vagas input.xlsx` e `Vagas compatibilidade.xlsx`).
+- **Arquivos principais:** `analisar_vagas.py`, `analisar_vagas_generico.py`, `vagas_input.xlsx`, `vagas_compatibilidade.xlsx`
+- **Tecnologias:** Python, pandas, openpyxl
+
+### 3. Automações Fiscais e Volumetria (`/Gertec`)
+Scripts desenvolvidos para apoio às rotinas do departamento fiscal, incluindo cálculo de volumetria e consolidação de dados operacionais.
+
+- **Arquivos principais:** `volumetria_versaoatt.py`
+- **Tecnologias:** Python, openpyxl

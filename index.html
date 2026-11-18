@@ -1,92 +1,259 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Currículo Digital de Ícaro Bastos — Profissional Administrativo, Rotinas Fiscais, Financeiras, ERP Protheus, Python, SQL e Automação de Processos.">
+  <meta name="theme-color" content="#060911">
   <title>Ícaro Bastos — Currículo Digital</title>
-  
-  <!-- Fontes -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  
-  <!-- Estilos -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Ambient Background -->
+  <div class="bg-canvas" aria-hidden="true">
+    <div class="bg-grid"></div>
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+  </div>
 
-  <div class="scanlines"></div>
+  <!-- Top Navigation -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <a href="#topo" class="brand" aria-label="Início">
+        <span class="brand-mark">IB</span>
+        <span class="brand-text">
+          <span class="brand-name">Ícaro Bastos</span>
+          <span class="brand-sub">curriculo.json</span>
+        </span>
+      </a>
 
-  <header class="topbar">
-    <div class="topbar-left">
-      <span class="dot"></span>
-      <span class="topbar-label">curriculo.json</span>
+      <nav class="nav-links" aria-label="Navegação principal">
+        <a href="#sobre" class="nav-link active">Sobre</a>
+        <a href="#competencias" class="nav-link">Competências</a>
+        <a href="#experiencia" class="nav-link">Experiência</a>
+        <a href="#projetos" class="nav-link">Automações</a>
+        <a href="#formacao" class="nav-link">Formação</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button type="button" class="icon-btn cmd-trigger" id="cmdTrigger" title="Menu rápido (Ctrl+K)" aria-label="Abrir menu rápido">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <span class="cmd-label">Atalhos</span>
+          <kbd>Ctrl K</kbd>
+        </button>
+
+        <button type="button" class="icon-btn" id="themeToggle" title="Alternar tema claro/escuro" aria-label="Alternar tema">
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+
+        <button type="button" class="btn-primary btn-sm" id="printBtn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+          <span>PDF</span>
+        </button>
+      </div>
     </div>
-    <div class="topbar-right" id="statusLine">GET /api/profile</div>
   </header>
 
-  <main class="boot" id="bootScreen">
-    <pre id="bootLog"></pre>
-  </main>
+  <main class="container" id="topo">
+    <!-- Hero Section -->
+    <section class="hero reveal" id="sobre">
+      <div class="hero-main spotlight-card">
+        <div class="hero-top">
+          <div class="avatar-wrap">
+            <div class="avatar-ring"></div>
+            <div class="avatar">IB</div>
+          </div>
+          <div class="status-badge">
+            <span class="pulse-dot"></span>
+            <span id="p-status">Disponível para novas oportunidades</span>
+          </div>
+        </div>
 
-  <div class="app" id="app" hidden>
+        <div class="hero-identity">
+          <h1 class="hero-name" id="p-name">Ícaro Bastos</h1>
+          <p class="hero-role">
+            <span id="p-role">Profissional Administrativo</span>
+            <span class="role-divider">·</span>
+            <span class="role-highlight">Dados &amp; Automação</span>
+          </p>
+          <div class="hero-meta">
+            <span class="meta-chip">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span id="p-location">Ilhéus, Bahia, Brasil</span>
+            </span>
+            <span class="meta-chip">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              <span>Adm. — Anhanguera (4º sem.)</span>
+            </span>
+          </div>
+        </div>
 
-    <!-- Sidebar / Perfil -->
-    <aside class="profile-card">
-      <div class="avatar">IB</div>
-      <h1 class="name" id="p-name"></h1>
-      <p class="role" id="p-role"></p>
-      <p class="location" id="p-location"></p>
-      <div class="status-pill">
-        <span class="pulse"></span>
-        <span id="p-status"></span>
+        <p class="hero-summary" id="p-summary"></p>
+
+        <div class="hero-actions">
+          <button type="button" class="btn-primary" id="copyEmailBtn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <span id="p-email-label">icarocaue79@gmail.com</span>
+          </button>
+          <a id="p-email" href="mailto:icarocaue79@gmail.com" class="btn-ghost" title="Abrir cliente de e-mail">
+            Enviar e-mail ↗
+          </a>
+          <a id="p-linkedin" href="#" target="_blank" rel="noopener noreferrer" class="btn-ghost">
+            LinkedIn ↗
+          </a>
+          <a id="p-github" href="#" target="_blank" rel="noopener noreferrer" class="btn-ghost">
+            GitHub ↗
+          </a>
+        </div>
       </div>
-      <p class="summary" id="p-summary"></p>
-      <div class="contact">
-        <a id="p-email" href="#" class="contact-link"></a>
-        <a id="p-linkedin" href="#" target="_blank" rel="noopener noreferrer" class="contact-link">LinkedIn ↗</a>
-        <a id="p-github" href="#" target="_blank" rel="noopener noreferrer" class="contact-link">GitHub ↗</a>
+
+      <!-- KPI Bento Grid -->
+      <div class="kpi-grid">
+        <div class="kpi-card spotlight-card">
+          <div class="kpi-label">Experiência Prática</div>
+          <div class="kpi-value">4+ Anos</div>
+          <div class="kpi-foot">Financeiro, Fiscal, DP &amp; Contratos</div>
+        </div>
+        <div class="kpi-card spotlight-card">
+          <div class="kpi-label">Automações Entregues</div>
+          <div class="kpi-value">9 <span class="kpi-sub">/ 12</span></div>
+          <div class="kpi-foot">22h/mês economizadas · 84,5% eficiência</div>
+        </div>
+        <div class="kpi-card spotlight-card">
+          <div class="kpi-label">Escala Operacional</div>
+          <div class="kpi-value">8 Filiais</div>
+          <div class="kpi-foot">Consolidação de volumetria &amp; ERP</div>
+        </div>
+        <div class="kpi-card spotlight-card">
+          <div class="kpi-label">Stack Corporativa</div>
+          <div class="kpi-value">3 ERPs</div>
+          <div class="kpi-foot">Protheus · Workfinity · Lexio</div>
+        </div>
       </div>
-    </aside>
+    </section>
 
-    <!-- Conteúdo Principal -->
-    <div class="main-col">
+    <!-- Skills Section -->
+    <section class="section reveal" id="competencias">
+      <div class="section-head">
+        <div>
+          <span class="section-eyebrow">01 // STACK &amp; HABILIDADES</span>
+          <h2 class="section-title">Competências Técnicas</h2>
+        </div>
+        <p class="section-desc">Base sólida em gestão administrativa, fiscal e ERPs, combinada com automação e dados.</p>
+      </div>
 
-      <!-- Skills -->
-      <section class="panel skill-panel">
-        <h2 class="panel-title">// SKILL TREE</h2>
-        <div class="skill-group">
-          <h3 class="skill-group-title">Domínio</h3>
+      <div class="skills-layout">
+        <div class="surface-card spotlight-card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="card-badge badge-cyan">Domínio Consolidado</span>
+              <h3>Ferramentas &amp; Rotinas</h3>
+            </div>
+            <span class="mono-count" id="masteredCount">0 skills</span>
+          </div>
           <div id="skills-mastered" class="skill-list"></div>
         </div>
-        <div class="skill-group">
-          <h3 class="skill-group-title">Em desenvolvimento</h3>
+
+        <div class="surface-card spotlight-card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="card-badge badge-violet">Em Evolução</span>
+              <h3>Dados &amp; Automação</h3>
+            </div>
+            <span class="mono-count" id="learningCount">0 skills</span>
+          </div>
           <div id="skills-learning" class="skill-list"></div>
+
+          <div class="stack-pills-box">
+            <div class="stack-pills-title">Ecossistema &amp; Tecnologias Aplicadas</div>
+            <div class="stack-pills">
+              <span class="tech-pill">Python</span>
+              <span class="tech-pill">SQL</span>
+              <span class="tech-pill">openpyxl</span>
+              <span class="tech-pill">PyAutoGUI</span>
+              <span class="tech-pill">Power BI</span>
+              <span class="tech-pill">Power Automate</span>
+              <span class="tech-pill">Protheus</span>
+              <span class="tech-pill">e-CAC / E115</span>
+              <span class="tech-pill">SharePoint</span>
+            </div>
+          </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Experiência -->
-      <section class="panel">
-        <h2 class="panel-title">EXPERIENCE // MISSION LOG</h2>
-        <div id="experience-log" class="timeline"></div>
-      </section>
+    <!-- Experience Section -->
+    <section class="section reveal" id="experiencia">
+      <div class="section-head">
+        <div>
+          <span class="section-eyebrow">02 // TRAJETÓRIA PROFISSIONAL</span>
+          <h2 class="section-title">Experiência</h2>
+        </div>
+        <p class="section-desc">Atuação contínua desde 2022 em rotinas fiscais, financeiras, contratuais e operacionais.</p>
+      </div>
 
-      <!-- Projetos -->
-      <section class="panel">
-        <h2 class="panel-title">PROJECTS // QUEST LOG</h2>
-        <div id="projects-list" class="project-grid"></div>
-      </section>
+      <div id="experience-log" class="timeline"></div>
+    </section>
 
-      <!-- Educação -->
-      <section class="panel">
-        <h2 class="panel-title">// EDUCATION</h2>
-        <div id="education-list"></div>
-      </section>
+    <!-- Projects & Automations Section -->
+    <section class="section reveal" id="projetos">
+      <div class="section-head section-head-wrap">
+        <div>
+          <span class="section-eyebrow">03 // PORTFÓLIO DE EFICIÊNCIA</span>
+          <h2 class="section-title">Projetos &amp; Automações</h2>
+        </div>
+        <div class="filter-bar" role="tablist" aria-label="Filtrar projetos">
+          <button type="button" class="filter-btn active" data-filter="all">Todos</button>
+          <button type="button" class="filter-btn" data-filter="python">Python &amp; Dados</button>
+          <button type="button" class="filter-btn" data-filter="fiscal">ERP &amp; Fiscal</button>
+          <button type="button" class="filter-btn" data-filter="arquivos">Arquivos &amp; Ops</button>
+        </div>
+      </div>
 
+      <div id="featured-projects" class="featured-grid"></div>
+      <div id="projects-list" class="project-grid"></div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section reveal" id="formacao">
+      <div class="section-head">
+        <div>
+          <span class="section-eyebrow">04 // BASE ACADÊMICA</span>
+          <h2 class="section-title">Formação</h2>
+        </div>
+      </div>
+      <div id="education-list" class="edu-grid"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>© <span id="footerYear">2026</span> Ícaro Bastos · Ilhéus, BA</span>
+      <span class="footer-mono">Construído com HTML, CSS &amp; JS puros · Fonte: curriculo.json</span>
+    </div>
+  </footer>
+
+  <!-- Command Palette Modal -->
+  <div class="cmd-backdrop" id="cmdBackdrop" hidden>
+    <div class="cmd-modal" role="dialog" aria-modal="true" aria-labelledby="cmdInput">
+      <div class="cmd-input-wrap">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" id="cmdInput" placeholder="Ir para seção, copiar e-mail, alternar tema..." autocomplete="off">
+        <button type="button" class="cmd-esc" id="cmdClose">ESC</button>
+      </div>
+      <div class="cmd-list" id="cmdList"></div>
     </div>
   </div>
 
-  <!-- Scripts com defer para garantir o carregamento do DOM -->
+  <!-- Toast Notification -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
   <script src="script.js" defer></script>
 </body>
 </html>

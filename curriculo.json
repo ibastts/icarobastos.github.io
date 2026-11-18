@@ -1,10 +1,10 @@
 {
   "profile": {
     "name": "Ícaro Bastos",
-    "role": "Profissional Administrativo",
+    "role": "Assistente Administrativo",
     "location": "Ilhéus, Bahia, Brasil",
     "status": "Disponível para novas oportunidades",
-    "summary": "Profissional administrativo com sólida vivência em rotinas de departamento pessoal, fiscal e financeiro. Atuação com lançamento de títulos, conciliação bancária, gestão de contratos e obrigações fiscais em sistemas como Protheus, Workfinity e Lexio. Em transição para a área de dados, desenvolvendo Python, SQL e automação de processos.",
+    "summary": "Profissional administrativo com vivência em rotinas de departamento pessoal, fiscal e financeiro, atuando com lançamento de títulos, conciliação bancária, gestão de contratos, obrigações fiscais (e-CAC, E115, CCE) e sistemas como Protheus, Workfinity e Lexio. Atualmente na Gertec aplicando automação de processos com Python, análise de dados e tabelas dinâmicas para ganho de precisão e redução de retrabalho operacional.",
     "email": "icarocaue79@gmail.com",
     "links": {
       "linkedin": "https://www.linkedin.com/in/ícaro-bastos",
@@ -13,7 +13,7 @@
   },
   "education": [
     {
-      "institution": "Anhanguera",
+      "institution": "Anhanguera Educacional",
       "degree": "Bacharelado em Administração",
       "period": "Em andamento — 4º semestre"
     }
@@ -30,9 +30,9 @@
       { "name": "Conciliação Bancária", "level": 80 }
     ],
     "learning": [
-      { "name": "Python", "source": "Hashtag Treinamentos", "level": 35 },
-      { "name": "SQL", "source": "Hashtag Treinamentos", "level": 30 },
-      { "name": "Power Automate", "source": "Microsoft", "level": 30 }
+      { "name": "Python", "source": "Hashtag Treinamentos & Prática", "level": 45 },
+      { "name": "SQL", "source": "Hashtag Treinamentos", "level": 35 },
+      { "name": "Power Automate", "source": "Microsoft", "level": 35 }
     ]
   },
   "experience": [
@@ -43,8 +43,9 @@
       "period": "jun/2026 — atual",
       "location": "Presencial",
       "highlights": [
+        "Desenvolvimento e execução de scripts em Python via VS Code para automação de rotinas administrativas, aumentando a precisão e otimizando o tempo de execução",
         "Lançamento de títulos financeiros no sistema, assegurando o correto processamento das informações",
-        "Elaboração de tabelas dinâmicas para mensuração de retrabalhos operacionais",
+        "Elaboração de tabelas dinâmicas para mensuração de retrabalhos operacionais e acompanhamento mensal de centros de custo ajustados",
         "Ajuste de centro de custo, assegurando a correta alocação das informações contábeis",
         "Lançamentos de impostos federais via e-CAC e E115, mantendo a conformidade fiscal",
         "Elaboração de CCE (Carta de Correção Eletrônica) para correção de informações fiscais"
@@ -92,8 +93,13 @@
   ],
   "projects": [
     {
+      "name": "Feriado — Assistente Pessoal de Produtividade com IA",
+      "description": "Ecossistema em Python integrado ao Gmail, Google Antigravity e API de Bots do Telegram: triagem inteligente de e-mails com extração de prazos e valores, boletins agendados (12h e 17h), previsão do tempo e curadoria de notícias fiscais e de IA.",
+      "url": ""
+    },
+    {
       "name": "Painel de Automações — Departamento Fiscal",
-      "description": "Dashboard interativo e calculadora de eficiência com 12 processos catalogados e 9 automações concluídas.",
+      "description": "Dashboard interativo em HTML, Tailwind CSS e Chart.js com calculadora de economia de tempo: 12 processos mapeados, 9 automações em operação, 22h/mês economizadas e 84,5% de ganho médio de eficiência.",
       "url": ""
     },
     {
@@ -123,7 +129,7 @@
     },
     {
       "name": "6. Indicativo de Volumetria Fiscal",
-      "description": "Consolidação automática de dados fiscais de 8 filiais com exportação em CSV.",
+      "description": "Consolidação automática em Python do fluxo diário de documentos fiscais de 8 filiais com exportação em CSV pronto para auditoria.",
       "url": ""
     },
     {

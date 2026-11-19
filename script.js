@@ -93,6 +93,12 @@ const fallbackProfile = {
   ],
   projects: [
     {
+      name: 'CaixaClaro — Aplicativo Web SaaS de Gestão Financeira PJ/PF',
+      description:
+        'Sistema SaaS multi-tenant em React, TypeScript, Tailwind CSS e Supabase (com Row Level Security) hospedado na Netlify: separação automática entre caixa PJ e retiradas pessoais PF, controle de estoque com leitor de código de barras, cadastro de clientes, comprovantes personalizados em PNG, contrato digital com registro de aceite, caixa de feedback, e-mails automáticos e painel de gestão integrado ao Telegram.',
+      url: 'https://meunegocio-facil.netlify.app'
+    },
+    {
       name: 'Feriado — Assistente Pessoal de Produtividade com IA',
       description:
         'Ecossistema em Python integrado ao Gmail, Google Antigravity e API de Bots do Telegram: triagem inteligente de e-mails com extração de prazos e valores, boletins agendados (12h e 17h), previsão do tempo e curadoria de notícias fiscais e de IA.',
@@ -197,6 +203,10 @@ function classifyProject(project) {
   const text = `${project.name} ${project.description}`.toLowerCase();
   const tags = [];
 
+  if (text.includes('react')) tags.push('React');
+  if (text.includes('typescript')) tags.push('TypeScript');
+  if (text.includes('supabase')) tags.push('Supabase');
+  if (text.includes('netlify')) tags.push('Netlify');
   if (text.includes('python')) tags.push('Python');
   if (text.includes('pyautogui')) tags.push('PyAutoGUI');
   if (text.includes('openpyxl')) tags.push('openpyxl');
@@ -209,6 +219,9 @@ function classifyProject(project) {
   if (tags.length === 0) tags.push('Automação');
 
   const cats = [];
+  if (text.includes('saas') || text.includes('react')) {
+    cats.push('saas');
+  }
   if (text.includes('python') || text.includes('sql') || text.includes('csv') || text.includes('compatibilidade')) {
     cats.push('python');
   }
@@ -234,6 +247,7 @@ function classifyProject(project) {
   if (cats.length === 0) cats.push('fiscal');
 
   const labelMap = {
+    saas: 'SaaS & Web App',
     python: 'Python & Dados',
     fiscal: 'ERP & Fiscal',
     arquivos: 'Arquivos & Ops'

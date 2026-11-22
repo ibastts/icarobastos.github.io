@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Currículo Digital de Ícaro Bastos — Profissional Administrativo, Rotinas Fiscais, Financeiras, ERP Protheus, Python, SQL e Automação de Processos.">
-  <meta name="theme-color" content="#060911">
+  <meta name="theme-color" content="#120f0d">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Ícaro Bastos — Currículo Digital">
   <meta property="og:description" content="Assistente Administrativo | Dados & Automação de Processos (Python, SQL, Power BI, Protheus).">
@@ -20,18 +20,24 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Ambient Background -->
+  <!-- Ambient Glassmorphism Background -->
   <div class="bg-canvas" aria-hidden="true">
+    <div class="bg-backdrop"></div>
     <div class="bg-grid"></div>
     <div class="bg-orb bg-orb-1"></div>
     <div class="bg-orb bg-orb-2"></div>
+    <div class="bg-orb bg-orb-3"></div>
+    <div class="bg-noise"></div>
   </div>
 
   <!-- Top Navigation -->
   <header class="navbar">
     <div class="navbar-inner">
       <a href="#topo" class="brand" aria-label="Início">
-        <span class="brand-mark">IB</span>
+        <span class="brand-mark">
+          <img src="profile.jpg" alt="Ícaro Bastos" class="avatar-img" onerror="this.style.display='none'">
+          <span class="avatar-fallback">IB</span>
+        </span>
         <span class="brand-text">
           <span class="brand-name">Ícaro Bastos</span>
           <span class="brand-sub">curriculo.json</span>
@@ -39,6 +45,7 @@
       </a>
 
       <nav class="nav-links" aria-label="Navegação principal">
+        <span class="pill-indicator" id="navPill" aria-hidden="true"></span>
         <a href="#sobre" class="nav-link active">Sobre</a>
         <a href="#competencias" class="nav-link">Competências</a>
         <a href="#experiencia" class="nav-link">Experiência</a>
@@ -73,7 +80,10 @@
         <div class="hero-top">
           <div class="avatar-wrap">
             <div class="avatar-ring"></div>
-            <div class="avatar">IB</div>
+            <div class="avatar">
+              <img src="profile.jpg" alt="Ícaro Bastos" class="avatar-img" onerror="this.style.display='none'">
+              <span class="avatar-fallback">IB</span>
+            </div>
           </div>
           <div class="status-badge">
             <span class="pulse-dot"></span>
@@ -116,30 +126,99 @@
           <a id="p-github" href="#" target="_blank" rel="noopener noreferrer" class="btn-ghost">
             GitHub ↗
           </a>
+          <a href="#caixaclaro-showcase" class="btn-ghost btn-flagship-pill">
+            <span class="pulse-dot"></span>
+            CaixaClaro App
+          </a>
         </div>
       </div>
 
       <!-- KPI Bento Grid -->
       <div class="kpi-grid">
-        <div class="kpi-card spotlight-card">
+        <a href="#experiencia" class="kpi-card spotlight-card kpi-interactive">
           <div class="kpi-label">Experiência Prática</div>
-          <div class="kpi-value">4+ Anos</div>
+          <div class="kpi-value" data-count="4" data-suffix="+ Anos">4+ Anos</div>
           <div class="kpi-foot">Financeiro, Fiscal, DP &amp; Contratos</div>
-        </div>
-        <div class="kpi-card spotlight-card">
+        </a>
+        <a href="#projetos" class="kpi-card spotlight-card kpi-interactive">
           <div class="kpi-label">Automações Entregues</div>
-          <div class="kpi-value">9 <span class="kpi-sub">/ 12</span></div>
+          <div class="kpi-value"><span data-count="9">9</span> <span class="kpi-sub">/ 12</span></div>
           <div class="kpi-foot">22h/mês economizadas · 84,5% eficiência</div>
-        </div>
-        <div class="kpi-card spotlight-card">
+        </a>
+        <a href="#projetos" class="kpi-card spotlight-card kpi-interactive" data-jump-filter="fiscal">
           <div class="kpi-label">Escala Operacional</div>
-          <div class="kpi-value">8 Filiais</div>
+          <div class="kpi-value" data-count="8" data-suffix=" Filiais">8 Filiais</div>
           <div class="kpi-foot">Consolidação de volumetria &amp; ERP</div>
-        </div>
-        <div class="kpi-card spotlight-card">
+        </a>
+        <a href="#competencias" class="kpi-card spotlight-card kpi-interactive">
           <div class="kpi-label">Stack Corporativa</div>
-          <div class="kpi-value">3 ERPs</div>
+          <div class="kpi-value" data-count="3" data-suffix=" ERPs">3 ERPs</div>
           <div class="kpi-foot">Protheus · Workfinity · Lexio</div>
+        </a>
+      </div>
+
+      <!-- Interactive Glass Analytics Row (Kerfa-inspired) -->
+      <div class="dash-bento">
+        <div class="dash-card spotlight-card">
+          <div class="dash-head">
+            <div>
+              <div class="dash-eyebrow">Painel de Eficiência</div>
+              <div class="dash-metric-row">
+                <span class="dash-big-val" id="chartMainVal">22h/mês</span>
+                <span class="dash-delta" id="chartDelta">+84,5% eficiência</span>
+              </div>
+            </div>
+            <div class="segmented-control" id="chartMetricSwitch" role="tablist" aria-label="Métrica do gráfico">
+              <span class="pill-indicator" id="chartPill" aria-hidden="true"></span>
+              <button type="button" class="seg-btn active" data-metric="hours">Horas</button>
+              <button type="button" class="seg-btn" data-metric="efficiency">Eficiência</button>
+              <button type="button" class="seg-btn" data-metric="automations">Entregas</button>
+            </div>
+          </div>
+
+          <div class="chart-wrap" id="splineChartWrap">
+            <svg class="spline-svg" id="splineSvg" viewBox="0 0 540 165" preserveAspectRatio="none" aria-label="Gráfico interativo de evolução"></svg>
+            <div class="chart-tooltip" id="chartTooltip" hidden>
+              <div class="chart-tooltip-label" id="tooltipLabel"></div>
+              <div class="chart-tooltip-val" id="tooltipVal"></div>
+            </div>
+          </div>
+
+          <div class="seg-bar-wrap">
+            <div class="seg-bar-head">
+              <span>Distribuição do Portfólio (clique para filtrar)</span>
+              <span class="seg-bar-hint" id="segBarHint">12 processos mapeados</span>
+            </div>
+            <div class="seg-bar" id="portfolioSegBar">
+              <button type="button" class="seg-fill seg-coral" style="width: 42%" data-filter-jump="python" title="Python & Dados"></button>
+              <button type="button" class="seg-fill seg-amber" style="width: 33%" data-filter-jump="fiscal" title="ERP & Fiscal"></button>
+              <button type="button" class="seg-fill seg-blue" style="width: 25%" data-filter-jump="arquivos" title="Arquivos & Ops"></button>
+            </div>
+            <div class="seg-legend">
+              <button type="button" class="legend-item" data-filter-jump="python"><span class="dot dot-coral"></span>Python &amp; Dados</button>
+              <button type="button" class="legend-item" data-filter-jump="fiscal"><span class="dot dot-amber"></span>ERP &amp; Fiscal</button>
+              <button type="button" class="legend-item" data-filter-jump="arquivos"><span class="dot dot-blue"></span>Arquivos &amp; Ops</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="dash-card spotlight-card">
+          <div class="dash-head">
+            <div>
+              <div class="dash-eyebrow">Domínio por Pilar</div>
+              <div class="dash-metric-row">
+                <span class="dash-big-val" id="pillarActiveVal">90%</span>
+                <span class="dash-delta dash-delta-neutral" id="pillarActiveName">Excel Avançado</span>
+              </div>
+            </div>
+            <span class="mono-count">Clique nas barras</span>
+          </div>
+
+          <div class="pillar-bars" id="pillarBars" role="list" aria-label="Pilares técnicos"></div>
+
+          <div class="pillar-detail" id="pillarDetail">
+            Tabelas dinâmicas, conciliação e controle de retrabalho operacional.
+          </div>
         </div>
       </div>
     </section>
@@ -215,12 +294,57 @@
           <h2 class="section-title">Projetos &amp; Automações</h2>
         </div>
         <div class="filter-bar" role="tablist" aria-label="Filtrar projetos">
+          <span class="pill-indicator" id="filterPill" aria-hidden="true"></span>
           <button type="button" class="filter-btn active" data-filter="all">Todos</button>
           <button type="button" class="filter-btn" data-filter="python">Python &amp; Dados</button>
           <button type="button" class="filter-btn" data-filter="fiscal">ERP &amp; Fiscal</button>
           <button type="button" class="filter-btn" data-filter="arquivos">Arquivos &amp; Ops</button>
         </div>
       </div>
+
+      <!-- Flagship Product Marketing Showcase: CaixaClaro -->
+      <article class="caixaclaro-flagship spotlight-card" id="caixaclaro-showcase">
+        <div class="flagship-grid">
+          <div class="flagship-content">
+            <div class="flagship-badge-row">
+              <span class="flagship-eyebrow">★ PRODUTO EM PRODUÇÃO · SAAS PARA PMEs</span>
+              <span class="status-badge flagship-live">
+                <span class="pulse-dot"></span>
+                Online · Celular &amp; PC
+              </span>
+            </div>
+
+            <h3 class="flagship-title">CaixaClaro — Gestão Simples PJ e PF</h3>
+            <p class="flagship-lead">Ainda mistura o dinheiro da loja com o seu?</p>
+            <p class="flagship-pitch">
+              O <strong>CaixaClaro</strong> organiza seu fluxo de caixa separando <strong>PJ vs PF</strong>, controla estoque com <strong>leitor de código de barras</strong>, acompanha entregas, gera <strong>comprovantes e relatórios em PNG</strong> e ainda inclui <strong>2 abas sob medida</strong> para o seu negócio — direto no celular ou PC.
+            </p>
+
+            <div class="flagship-features">
+              <span class="tech-pill">Separação PJ vs PF</span>
+              <span class="tech-pill">Código de Barras</span>
+              <span class="tech-pill">Estoque &amp; Entregas</span>
+              <span class="tech-pill">Comprovantes PNG</span>
+              <span class="tech-pill">2 Abas Sob Medida</span>
+              <span class="tech-pill">React · TypeScript · Supabase</span>
+            </div>
+
+            <div class="flagship-actions">
+              <a href="https://meunegocio-facil.netlify.app" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                Testar CaixaClaro ao vivo ↗
+              </a>
+              <button type="button" class="btn-ghost" id="caixaclaroDetailsBtn">
+                Ver ficha técnica
+              </button>
+            </div>
+          </div>
+
+          <a href="https://meunegocio-facil.netlify.app" target="_blank" rel="noopener noreferrer" class="flagship-preview-wrap" aria-label="Abrir aplicativo CaixaClaro ao vivo">
+            <img src="caixaclaro-preview.jpg" alt="Prévia do aplicativo CaixaClaro - Gestão Simples PJ e PF" class="flagship-preview-img">
+            <span class="flagship-preview-badge">Abrir App ↗</span>
+          </a>
+        </div>
+      </article>
 
       <div id="featured-projects" class="featured-grid"></div>
       <div id="projects-list" class="project-grid"></div>
@@ -254,6 +378,29 @@
         <button type="button" class="cmd-esc" id="cmdClose">ESC</button>
       </div>
       <div class="cmd-list" id="cmdList"></div>
+    </div>
+  </div>
+
+  <!-- Project Quick-View Modal -->
+  <div class="cmd-backdrop project-modal-backdrop" id="projectModalBackdrop" hidden>
+    <div class="project-modal" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
+      <div class="pm-top">
+        <div class="pm-badges">
+          <span class="project-num" id="pmNum">#01</span>
+          <span class="project-cat" id="pmCat">Python &amp; Dados</span>
+        </div>
+        <button type="button" class="cmd-esc" id="pmClose" aria-label="Fechar detalhes">ESC</button>
+      </div>
+      <h3 class="pm-title" id="pmTitle"></h3>
+      <p class="pm-desc" id="pmDesc"></p>
+      <div class="project-tags" id="pmTags"></div>
+      <div class="pm-footer">
+        <div class="pm-nav">
+          <button type="button" class="btn-ghost btn-sm" id="pmPrev">← Anterior</button>
+          <button type="button" class="btn-ghost btn-sm" id="pmNext">Próximo →</button>
+        </div>
+        <a class="btn-primary btn-sm" id="pmLink" href="#" target="_blank" rel="noopener noreferrer" hidden>Visitar projeto ↗</a>
+      </div>
     </div>
   </div>
 

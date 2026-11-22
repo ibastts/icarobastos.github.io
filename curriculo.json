@@ -93,8 +93,8 @@
   ],
   "projects": [
     {
-      "name": "CaixaClaro — Aplicativo Web SaaS de Gestão Financeira PJ/PF",
-      "description": "Sistema SaaS multi-tenant em React, TypeScript, Tailwind CSS e Supabase (com Row Level Security) hospedado na Netlify: separação automática entre caixa PJ e retiradas pessoais PF, controle de estoque com leitor de código de barras, cadastro de clientes, comprovantes personalizados em PNG, contrato digital com registro de aceite, caixa de feedback, e-mails automáticos e painel de gestão integrado ao Telegram.",
+      "name": "CaixaClaro — Gestão Simples PJ e PF (App Web / SaaS)",
+      "description": "Aplicativo financeiro completo para PMEs e autônomos: separa o caixa da empresa (PJ) do pessoal (PF), controla estoque com leitor de código de barras, gerencia entregas, gera comprovantes e relatórios em PNG e oferece 2 abas sob medida. Construído com React, TypeScript, Tailwind CSS, Supabase e publicado no Netlify.",
       "url": "https://meunegocio-facil.netlify.app"
     },
     {

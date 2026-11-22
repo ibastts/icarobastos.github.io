@@ -93,9 +93,9 @@ const fallbackProfile = {
   ],
   projects: [
     {
-      name: 'CaixaClaro — Aplicativo Web SaaS de Gestão Financeira PJ/PF',
+      name: 'CaixaClaro — Gestão Simples PJ e PF (App Web / SaaS)',
       description:
-        'Sistema SaaS multi-tenant em React, TypeScript, Tailwind CSS e Supabase (com Row Level Security) hospedado na Netlify: separação automática entre caixa PJ e retiradas pessoais PF, controle de estoque com leitor de código de barras, cadastro de clientes, comprovantes personalizados em PNG, contrato digital com registro de aceite, caixa de feedback, e-mails automáticos e painel de gestão integrado ao Telegram.',
+        'Aplicativo financeiro completo para PMEs e autônomos: separa o caixa da empresa (PJ) do pessoal (PF), controla estoque com leitor de código de barras, gerencia entregas, gera comprovantes e relatórios em PNG e oferece 2 abas sob medida. Construído com React, TypeScript, Tailwind CSS, Supabase e publicado no Netlify.',
       url: 'https://meunegocio-facil.netlify.app'
     },
     {
@@ -203,10 +203,6 @@ function classifyProject(project) {
   const text = `${project.name} ${project.description}`.toLowerCase();
   const tags = [];
 
-  if (text.includes('react')) tags.push('React');
-  if (text.includes('typescript')) tags.push('TypeScript');
-  if (text.includes('supabase')) tags.push('Supabase');
-  if (text.includes('netlify')) tags.push('Netlify');
   if (text.includes('python')) tags.push('Python');
   if (text.includes('pyautogui')) tags.push('PyAutoGUI');
   if (text.includes('openpyxl')) tags.push('openpyxl');
@@ -219,9 +215,6 @@ function classifyProject(project) {
   if (tags.length === 0) tags.push('Automação');
 
   const cats = [];
-  if (text.includes('saas') || text.includes('react')) {
-    cats.push('saas');
-  }
   if (text.includes('python') || text.includes('sql') || text.includes('csv') || text.includes('compatibilidade')) {
     cats.push('python');
   }
@@ -247,7 +240,6 @@ function classifyProject(project) {
   if (cats.length === 0) cats.push('fiscal');
 
   const labelMap = {
-    saas: 'SaaS & Web App',
     python: 'Python & Dados',
     fiscal: 'ERP & Fiscal',
     arquivos: 'Arquivos & Ops'
@@ -310,14 +302,14 @@ function renderSkills(containerId, countId, list) {
 function renderExperience(list) {
   const container = document.getElementById('experience-log');
   container.innerHTML = (list || [])
-    .map((job) => {
+    .map((job, idx) => {
       const isCurrent = String(job.period || '').toLowerCase().includes('atual');
       return `
-        <article class="timeline-item spotlight-card ${isCurrent ? 'is-current' : ''}">
+        <article class="timeline-item spotlight-card ${isCurrent ? 'is-current' : ''}" data-exp-idx="${idx}">
           <span class="timeline-node" aria-hidden="true"></span>
           <div class="timeline-head">
             <div>
-              <div class="timeline-role">${escapeHtml(job.role)}</div>
+              <div class="timeline-role">${escapeHtml(job.role)} <span class="timeline-toggle-hint">${isCurrent ? '▾' : '▾'}</span></div>
               <div class="timeline-company">${escapeHtml(job.company)} · ${escapeHtml(job.type)}</div>
             </div>
             <div class="timeline-badges">
@@ -332,6 +324,14 @@ function renderExperience(list) {
       `;
     })
     .join('');
+
+  container.querySelectorAll('.timeline-item').forEach((item) => {
+    item.addEventListener('click', () => {
+      const collapsed = item.classList.toggle('is-collapsed');
+      const hint = item.querySelector('.timeline-toggle-hint');
+      if (hint) hint.textContent = collapsed ? '▸' : '▾';
+    });
+  });
 }
 
 function renderProjects(list, filter = 'all') {
@@ -348,8 +348,9 @@ function renderProjects(list, filter = 'all') {
       .map((project, idx) => {
         const meta = classifyProject(project);
         const isPanel = project.name.toLowerCase().includes('painel');
+        const pIdx = list.indexOf(project);
         return `
-          <article class="featured-card spotlight-card">
+          <article class="featured-card spotlight-card" data-project-idx="${pIdx}" tabindex="0" role="button" aria-label="Ver detalhes de ${escapeHtml(project.name)}">
             <div>
               <div class="featured-top">
                 <span class="featured-tag">${idx <= 1 ? 'Destaque' : 'Ferramenta Python'}</span>
@@ -402,8 +403,9 @@ function renderProjects(list, filter = 'all') {
       const numLabel = match ? `#${match[1].padStart(2, '0')}` : 'Destaque';
       const cleanName = match ? match[2] : project.name;
 
+      const pIdx = list.indexOf(project);
       return `
-        <article class="project-card spotlight-card">
+        <article class="project-card spotlight-card" data-project-idx="${pIdx}" tabindex="0" role="button" aria-label="Ver detalhes de ${escapeHtml(cleanName)}">
           <div>
             <div class="project-head">
               <span class="project-num">${numLabel}</span>
@@ -483,15 +485,96 @@ function setupSpotlight() {
   });
 }
 
+function easeOutQuad(t) {
+  return 1 - (1 - t) * (1 - t);
+}
+
+function easeInOutQuad(t) {
+  return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+}
+
+function getPillEdges(target, container) {
+  const t = target.offsetTop;
+  const l = target.offsetLeft;
+  const r = Math.max(0, container.clientWidth - (l + target.offsetWidth));
+  const b = Math.max(0, container.clientHeight - (t + target.offsetHeight));
+  return { t, r, b, l };
+}
+
+function applyPillClip(pill, st) {
+  pill.style.clipPath = `inset(${st.t.toFixed(2)}px ${st.r.toFixed(2)}px ${st.b.toFixed(2)}px ${st.l.toFixed(2)}px round 9999px)`;
+}
+
+function slidePill(pill, target, container, instant = false) {
+  if (!pill || !target || !container || target.offsetWidth === 0) return;
+
+  const to = getPillEdges(target, container);
+  if (instant || !pill._st) {
+    pill._st = { ...to };
+    applyPillClip(pill, pill._st);
+    pill.classList.add('ready');
+    return;
+  }
+
+  const from = { ...pill._st };
+  const vertical = Math.abs(to.t - from.t) > Math.abs(to.l - from.l);
+  const fwd = vertical ? to.t > from.t : to.l > from.l;
+  const [lead, trail] = vertical
+    ? (fwd ? ['b', 't'] : ['t', 'b'])
+    : (fwd ? ['r', 'l'] : ['l', 'r']);
+
+  if (pill._raf) cancelAnimationFrame(pill._raf);
+  const start = performance.now();
+  const leadDur = 310;
+  const trailDur = 480;
+
+  function step(now) {
+    const elapsed = now - start;
+    const pLead = Math.min(1, elapsed / leadDur);
+    const pTrail = Math.min(1, elapsed / trailDur);
+    const eLead = easeOutQuad(pLead);
+    const eTrail = easeInOutQuad(pTrail);
+
+    pill._st[lead] = from[lead] + (to[lead] - from[lead]) * eLead;
+    pill._st[trail] = from[trail] + (to[trail] - from[trail]) * eTrail;
+    const otherA = vertical ? 'l' : 't';
+    const otherB = vertical ? 'r' : 'b';
+    pill._st[otherA] = from[otherA] + (to[otherA] - from[otherA]) * eLead;
+    pill._st[otherB] = from[otherB] + (to[otherB] - from[otherB]) * eLead;
+
+    applyPillClip(pill, pill._st);
+
+    if (pTrail < 1) {
+      pill._raf = requestAnimationFrame(step);
+    } else {
+      pill._st = { ...to };
+      applyPillClip(pill, pill._st);
+      pill._raf = null;
+    }
+  }
+
+  pill._raf = requestAnimationFrame(step);
+}
+
 function setupFilters() {
-  document.querySelectorAll('.filter-btn').forEach((btn) => {
+  const filterBar = document.querySelector('.filter-bar');
+  const filterPill = document.getElementById('filterPill');
+  const buttons = document.querySelectorAll('.filter-btn');
+
+  buttons.forEach((btn) => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach((b) => b.classList.remove('active'));
+      buttons.forEach((b) => b.classList.remove('active'));
       btn.classList.add('active');
+      slidePill(filterPill, btn, filterBar);
       activeFilter = btn.dataset.filter;
       renderProjects(allProjects, activeFilter);
     });
   });
+
+  const activeBtn = filterBar?.querySelector('.filter-btn.active');
+  if (activeBtn) {
+    requestAnimationFrame(() => slidePill(filterPill, activeBtn, filterBar, true));
+  }
 }
 
 function setupRevealAndScrollSpy() {
@@ -510,7 +593,33 @@ function setupRevealAndScrollSpy() {
   reveals.forEach((el) => observer.observe(el));
 
   const sections = document.querySelectorAll('main section[id]');
+  const navBar = document.querySelector('.nav-links');
+  const navPill = document.getElementById('navPill');
   const navLinks = document.querySelectorAll('.nav-link');
+
+  function syncNavPill(instant = false) {
+    const activeLink = navBar?.querySelector('.nav-link.active');
+    if (activeLink) slidePill(navPill, activeLink, navBar, instant);
+  }
+
+  navLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      navLinks.forEach((l) => l.classList.remove('active'));
+      link.classList.add('active');
+      syncNavPill(false);
+    });
+  });
+
+  requestAnimationFrame(() => syncNavPill(true));
+  if (document.fonts?.ready) {
+    document.fonts.ready.then(() => {
+      syncNavPill(true);
+      const filterBar = document.querySelector('.filter-bar');
+      const filterPill = document.getElementById('filterPill');
+      const activeFilterBtn = filterBar?.querySelector('.filter-btn.active');
+      if (activeFilterBtn) slidePill(filterPill, activeFilterBtn, filterBar, true);
+    });
+  }
 
   window.addEventListener(
     'scroll',
@@ -520,12 +629,24 @@ function setupRevealAndScrollSpy() {
         const top = sec.getBoundingClientRect().top;
         if (top <= 140) currentId = sec.id;
       });
+      let changed = false;
       navLinks.forEach((link) => {
-        link.classList.toggle('active', link.getAttribute('href') === `#${currentId}`);
+        const shouldBeActive = link.getAttribute('href') === `#${currentId}`;
+        if (shouldBeActive && !link.classList.contains('active')) changed = true;
+        link.classList.toggle('active', shouldBeActive);
       });
+      if (changed) syncNavPill(false);
     },
     { passive: true }
   );
+
+  window.addEventListener('resize', () => {
+    syncNavPill(true);
+    const filterBar = document.querySelector('.filter-bar');
+    const filterPill = document.getElementById('filterPill');
+    const activeFilterBtn = filterBar?.querySelector('.filter-btn.active');
+    if (activeFilterBtn) slidePill(filterPill, activeFilterBtn, filterBar, true);
+  });
 }
 
 function setupCommandPalette(profile) {
@@ -552,6 +673,11 @@ function setupCommandPalette(profile) {
       action: () => document.getElementById('themeToggle').click()
     },
     { label: 'Exportar / Imprimir PDF', hint: 'Ctrl+P', action: () => window.print() },
+    {
+      label: 'Abrir CaixaClaro (App Web ao vivo)',
+      hint: 'Produto',
+      action: () => window.open('https://meunegocio-facil.netlify.app', '_blank', 'noopener,noreferrer')
+    },
     {
       label: 'Abrir LinkedIn',
       hint: 'Externo',
@@ -624,11 +750,287 @@ async function copyEmail(email) {
   }
 }
 
+function setupKpiAnimations() {
+  document.querySelectorAll('[data-count]').forEach((el) => {
+    const target = Number(el.dataset.count) || 0;
+    const suffix = el.dataset.suffix || '';
+    const dur = 850;
+    const start = performance.now();
+    function tick(now) {
+      const p = Math.min(1, (now - start) / dur);
+      const val = Math.round(target * easeOutQuad(p));
+      el.textContent = `${val}${suffix}`;
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+
+  document.querySelectorAll('[data-jump-filter], [data-filter-jump]').forEach((el) => {
+    el.addEventListener('click', () => {
+      const filter = el.dataset.jumpFilter || el.dataset.filterJump;
+      const btn = document.querySelector(`.filter-btn[data-filter="${filter}"]`);
+      if (btn) btn.click();
+      document.getElementById('projetos')?.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+}
+
+function setupEfficiencyChart() {
+  const svg = document.getElementById('splineSvg');
+  const tooltip = document.getElementById('chartTooltip');
+  const tLabel = document.getElementById('tooltipLabel');
+  const tVal = document.getElementById('tooltipVal');
+  const mainVal = document.getElementById('chartMainVal');
+  const deltaEl = document.getElementById('chartDelta');
+  const switchBar = document.getElementById('chartMetricSwitch');
+  const chartPill = document.getElementById('chartPill');
+  if (!svg || !switchBar) return;
+
+  const datasets = {
+    hours: {
+      headline: '22h/mês',
+      delta: '+84,5% eficiência',
+      points: [
+        { label: 'Mês 1 · SEFAZ', val: 4, text: '4h / mês' },
+        { label: 'Mês 2 · Lote & DI', val: 8, text: '8h / mês' },
+        { label: 'Mês 3 · Zebra ZPL', val: 12, text: '12h / mês' },
+        { label: 'Mês 4 · Volumetria', val: 16, text: '16h / mês' },
+        { label: 'Mês 5 · SharePoint', val: 19, text: '19h / mês' },
+        { label: 'Mês 6 · Feriado IA', val: 22, text: '22h / mês' }
+      ],
+      max: 25
+    },
+    efficiency: {
+      headline: '84,5%',
+      delta: 'Redução de retrabalho',
+      points: [
+        { label: 'Mês 1 · SEFAZ', val: 45, text: '45,0% ganho' },
+        { label: 'Mês 2 · Lote & DI', val: 58, text: '58,0% ganho' },
+        { label: 'Mês 3 · Zebra ZPL', val: 67, text: '67,5% ganho' },
+        { label: 'Mês 4 · Volumetria', val: 76, text: '76,0% ganho' },
+        { label: 'Mês 5 · SharePoint', val: 81, text: '81,2% ganho' },
+        { label: 'Mês 6 · Feriado IA', val: 84.5, text: '84,5% ganho' }
+      ],
+      max: 100
+    },
+    automations: {
+      headline: '9 / 12',
+      delta: '3 em desenvolvimento',
+      points: [
+        { label: 'Mês 1 · SEFAZ', val: 2, text: '2 automações' },
+        { label: 'Mês 2 · Lote & DI', val: 4, text: '4 automações' },
+        { label: 'Mês 3 · Zebra ZPL', val: 5, text: '5 automações' },
+        { label: 'Mês 4 · Volumetria', val: 7, text: '7 automações' },
+        { label: 'Mês 5 · SharePoint', val: 8, text: '8 automações' },
+        { label: 'Mês 6 · Feriado IA', val: 9, text: '9 automações' }
+      ],
+      max: 12
+    }
+  };
+
+  function renderChart(key) {
+    const ds = datasets[key];
+    mainVal.textContent = ds.headline;
+    deltaEl.textContent = ds.delta;
+
+    const w = 540;
+    const h = 165;
+    const padX = 24;
+    const padTop = 26;
+    const padBot = 24;
+    const plotH = h - padTop - padBot;
+
+    const coords = ds.points.map((pt, i) => {
+      const x = padX + (i / (ds.points.length - 1)) * (w - padX * 2);
+      const y = padTop + plotH - (pt.val / ds.max) * plotH;
+      return { x, y, ...pt };
+    });
+
+    let lineD = `M ${coords[0].x} ${coords[0].y}`;
+    for (let i = 0; i < coords.length - 1; i++) {
+      const c1x = (coords[i].x + coords[i + 1].x) / 2;
+      lineD += ` C ${c1x} ${coords[i].y}, ${c1x} ${coords[i + 1].y}, ${coords[i + 1].x} ${coords[i + 1].y}`;
+    }
+    const areaD = `${lineD} L ${coords[coords.length - 1].x} ${h - padBot} L ${coords[0].x} ${h - padBot} Z`;
+    const baseY = (padTop + plotH * 0.62).toFixed(1);
+
+    svg.innerHTML = `
+      <defs>
+        <linearGradient id="kerfaAreaGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#f27c54" stop-opacity="0.38" />
+          <stop offset="100%" stop-color="#f27c54" stop-opacity="0.0" />
+        </linearGradient>
+      </defs>
+      <line x1="${padX}" y1="${baseY}" x2="${w - padX}" y2="${baseY}" stroke="rgba(255,255,255,0.12)" stroke-dasharray="4 5" stroke-width="1.2" />
+      <path d="${areaD}" fill="url(#kerfaAreaGrad)" />
+      <path d="${lineD}" fill="none" stroke="#f27c54" stroke-width="2.8" stroke-linecap="round" />
+      ${coords
+        .map(
+          (c, idx) => `
+        <g>
+          <circle class="chart-point" cx="${c.x}" cy="${c.y}" r="${idx === coords.length - 1 ? 5.5 : 4}" fill="${idx === coords.length - 1 ? '#ffffff' : '#f27c54'}" stroke="#f27c54" stroke-width="2.5" data-idx="${idx}" />
+          <circle cx="${c.x}" cy="${c.y}" r="16" fill="transparent" class="chart-hit" data-idx="${idx}" style="cursor:pointer" />
+        </g>
+      `
+        )
+        .join('')}
+    `;
+
+    function showPt(idx) {
+      const pt = coords[idx];
+      if (!pt) return;
+      tLabel.textContent = pt.label;
+      tVal.textContent = pt.text;
+      tooltip.style.left = `${(pt.x / w) * 100}%`;
+      tooltip.style.top = `${(pt.y / h) * 100}%`;
+      tooltip.hidden = false;
+    }
+
+    svg.querySelectorAll('.chart-hit').forEach((hit) => {
+      hit.addEventListener('mouseenter', () => showPt(Number(hit.dataset.idx)));
+      hit.addEventListener('click', () => showPt(Number(hit.dataset.idx)));
+    });
+    svg.addEventListener('mouseleave', () => {
+      tooltip.hidden = true;
+    });
+  }
+
+  const buttons = switchBar.querySelectorAll('.seg-btn');
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      buttons.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      slidePill(chartPill, btn, switchBar);
+      renderChart(btn.dataset.metric);
+    });
+  });
+
+  renderChart('hours');
+  const activeSeg = switchBar.querySelector('.seg-btn.active');
+  if (activeSeg) {
+    requestAnimationFrame(() => slidePill(chartPill, activeSeg, switchBar, true));
+    document.fonts?.ready?.then(() => slidePill(chartPill, activeSeg, switchBar, true));
+  }
+}
+
+function setupPillarBars() {
+  const container = document.getElementById('pillarBars');
+  const valEl = document.getElementById('pillarActiveVal');
+  const nameEl = document.getElementById('pillarActiveName');
+  const detailEl = document.getElementById('pillarDetail');
+  if (!container) return;
+
+  const pillars = [
+    { short: 'Excel', name: 'Excel Avançado', pct: 90, detail: 'Tabelas dinâmicas, conciliação e controle de retrabalho operacional.' },
+    { short: 'Protheus', name: 'ERP Protheus', pct: 80, detail: 'Lançamento de títulos, cadastros, centros de custo e relatórios GT1444.' },
+    { short: 'Workf.', name: 'Workfinity', pct: 80, detail: 'Geração de relatórios operacionais e acompanhamento de ordens de serviço.' },
+    { short: 'Lexio', name: 'Lexio Contratos', pct: 80, detail: 'Criação e monitoramento completo de contratos do envio à assinatura.' },
+    { short: 'Fiscal', name: 'e-CAC / E115', pct: 75, detail: 'Lançamentos de impostos federais, CCE e conformidade fiscal.' },
+    { short: 'Python', name: 'Python & SQL', pct: 55, detail: 'Automação SEFAZ-AM, openpyxl, PyAutoGUI, APIs e consultas SQL.' }
+  ];
+
+  container.innerHTML = pillars
+    .map(
+      (p, i) => `
+      <button type="button" class="pillar-col ${i === 0 ? 'active' : ''}" data-pillar="${i}">
+        <div class="pillar-track">
+          <div class="pillar-bar" style="height: ${p.pct}%"></div>
+        </div>
+        <span class="pillar-label">${p.short}</span>
+      </button>
+    `
+    )
+    .join('');
+
+  function selectPillar(idx) {
+    const p = pillars[idx];
+    container.querySelectorAll('.pillar-col').forEach((c, i) => c.classList.toggle('active', i === idx));
+    valEl.textContent = `${p.pct}%`;
+    nameEl.textContent = p.name;
+    detailEl.textContent = p.detail;
+  }
+
+  container.querySelectorAll('.pillar-col').forEach((col) => {
+    col.addEventListener('click', () => selectPillar(Number(col.dataset.pillar)));
+    col.addEventListener('mouseenter', () => selectPillar(Number(col.dataset.pillar)));
+  });
+}
+
+function setupProjectModal() {
+  const backdrop = document.getElementById('projectModalBackdrop');
+  const closeBtn = document.getElementById('pmClose');
+  const prevBtn = document.getElementById('pmPrev');
+  const nextBtn = document.getElementById('pmNext');
+  const numEl = document.getElementById('pmNum');
+  const catEl = document.getElementById('pmCat');
+  const titleEl = document.getElementById('pmTitle');
+  const descEl = document.getElementById('pmDesc');
+  const tagsEl = document.getElementById('pmTags');
+  const linkEl = document.getElementById('pmLink');
+  if (!backdrop) return;
+
+  let currentIdx = 0;
+
+  function showProject(idx) {
+    if (!allProjects.length) return;
+    currentIdx = (idx + allProjects.length) % allProjects.length;
+    const p = allProjects[currentIdx];
+    const meta = classifyProject(p);
+    const match = String(p.name).match(/^(\d+)\.\s*(.*)$/);
+    numEl.textContent = match ? `#${match[1].padStart(2, '0')}` : 'Destaque';
+    catEl.textContent = meta.primaryLabel;
+    titleEl.textContent = match ? match[2] : p.name;
+    descEl.textContent = p.description;
+    tagsEl.innerHTML = meta.tags.map((t) => `<span class="project-tag">${escapeHtml(t)}</span>`).join('');
+    if (p.url) {
+      linkEl.href = p.url;
+      linkEl.hidden = false;
+    } else {
+      linkEl.hidden = true;
+    }
+    backdrop.hidden = false;
+  }
+
+  function closeModal() {
+    backdrop.hidden = true;
+  }
+
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('a.project-link')) return;
+    const card = e.target.closest('[data-project-idx]');
+    if (!card) return;
+    showProject(Number(card.dataset.projectIdx));
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (backdrop.hidden) return;
+    if (e.key === 'Escape') closeModal();
+    else if (e.key === 'ArrowLeft') showProject(currentIdx - 1);
+    else if (e.key === 'ArrowRight') showProject(currentIdx + 1);
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  prevBtn.addEventListener('click', () => showProject(currentIdx - 1));
+  nextBtn.addEventListener('click', () => showProject(currentIdx + 1));
+  backdrop.addEventListener('click', (e) => {
+    if (e.target === backdrop) closeModal();
+  });
+
+  const caixaDetailsBtn = document.getElementById('caixaclaroDetailsBtn');
+  if (caixaDetailsBtn) {
+    caixaDetailsBtn.addEventListener('click', () => showProject(0));
+  }
+}
+
 async function init() {
   setupTheme();
   setupSpotlight();
   setupFilters();
   setupRevealAndScrollSpy();
+  setupKpiAnimations();
+  setupEfficiencyChart();
+  setupPillarBars();
+  setupProjectModal();
 
   document.getElementById('footerYear').textContent = new Date().getFullYear();
   document.getElementById('printBtn').addEventListener('click', () => window.print());
